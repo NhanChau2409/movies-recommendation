@@ -1,0 +1,14 @@
+export { AggregateMoviesArgs } from "./AggregateMoviesArgs";
+export { CreateManyMoviesArgs } from "./CreateManyMoviesArgs";
+export { CreateOneMoviesArgs } from "./CreateOneMoviesArgs";
+export { DeleteManyMoviesArgs } from "./DeleteManyMoviesArgs";
+export { DeleteOneMoviesArgs } from "./DeleteOneMoviesArgs";
+export { FindFirstMoviesArgs } from "./FindFirstMoviesArgs";
+export { FindFirstMoviesOrThrowArgs } from "./FindFirstMoviesOrThrowArgs";
+export { FindManyMoviesArgs } from "./FindManyMoviesArgs";
+export { FindUniqueMoviesArgs } from "./FindUniqueMoviesArgs";
+export { FindUniqueMoviesOrThrowArgs } from "./FindUniqueMoviesOrThrowArgs";
+export { GroupByMoviesArgs } from "./GroupByMoviesArgs";
+export { UpdateManyMoviesArgs } from "./UpdateManyMoviesArgs";
+export { UpdateOneMoviesArgs } from "./UpdateOneMoviesArgs";
+export { UpsertOneMoviesArgs } from "./UpsertOneMoviesArgs";

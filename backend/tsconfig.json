@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"target": "es2018",
+		"module": "commonjs",
+		"lib": ["es2018", "esnext.asynciterable"],
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"esModuleInterop": true
+		// "strict": true
+
+		// "outDir": "./dist",
+		// "sourceMap": true,
+		// "moduleResolution": "node",
+		// "declaration": false,
+		// "composite": false,
+		// "removeComments": true,
+		// "noImplicitAny": true,
+		// "strictNullChecks": true,
+		// "strictFunctionTypes": true,
+		// "noImplicitThis": true,
+		// "noUnusedLocals": true,
+		// "noUnusedParameters": true,
+		// "noImplicitReturns": true,
+		// "noFallthroughCasesInSwitch": true,
+		// "allowSyntheticDefaultImports": false,
+		// "skipLibCheck": true,
+		// "baseUrl": "."
+	}
+}

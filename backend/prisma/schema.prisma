@@ -1,0 +1,71 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+generator typegraphql {
+  provider            = "typegraphql-prisma"
+  output              = "../prisma/generated/type-graphql"
+  formatGeneratedCode = "prettier"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+  schemas  = ["genre", "movie", "rating", "user"]
+}
+
+model Genres {
+  id          Int           @id(map: "PK__Genres__3213E83F02720C18")
+  name        String        @db.NVarChar(255)
+  MovieGenres MovieGenres[]
+
+  @@schema("genre")
+}
+
+model MovieGenres {
+  movie_id Int
+  genre_id Int
+  Genres   Genres @relation(fields: [genre_id], references: [id], onDelete: Cascade, map: "FK_movie_genres_genre_id")
+  Movies   Movies @relation(fields: [movie_id], references: [id], onDelete: Cascade, map: "FK_movie_genres_movie_id")
+
+  @@id([movie_id, genre_id], map: "PK_movie_genres")
+  @@schema("genre")
+}
+
+model Movies {
+  id            Int           @id(map: "PK__Movies__3213E83FEC096458")
+  title         String?       @db.NVarChar(255)
+  release_date  DateTime?     @db.Date
+  runtime       Int?
+  overview      String?       @db.NVarChar(Max)
+  popularity    Decimal?      @db.Decimal(10, 2)
+  vote_average  Decimal?      @db.Decimal(3, 2)
+  vote_count    Int?
+  poster_path   String?       @db.NVarChar(255)
+  backdrop_path String?       @db.NVarChar(255)
+  MovieGenres   MovieGenres[]
+  Ratings       Ratings[]
+
+  @@schema("movie")
+}
+
+model Ratings {
+  user_id  Int
+  movie_id Int
+  rating   Float
+  Movies   Movies @relation(fields: [movie_id], references: [id], onDelete: Cascade, map: "FK_Rating_Movie")
+  Users    Users  @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "FK_Rating_User")
+
+  @@id([user_id, movie_id], map: "PK_Rating")
+  @@schema("rating")
+}
+
+model Users {
+  id       Int       @id(map: "PK__Users__3213E83F60CA92DA")
+  username String    @db.NVarChar(50)
+  password String    @db.NVarChar(50)
+  Ratings  Ratings[]
+
+  @@schema("user")
+}

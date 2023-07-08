@@ -1,0 +1,14 @@
+export { AggregateRatingsArgs } from "./AggregateRatingsArgs";
+export { CreateManyRatingsArgs } from "./CreateManyRatingsArgs";
+export { CreateOneRatingsArgs } from "./CreateOneRatingsArgs";
+export { DeleteManyRatingsArgs } from "./DeleteManyRatingsArgs";
+export { DeleteOneRatingsArgs } from "./DeleteOneRatingsArgs";
+export { FindFirstRatingsArgs } from "./FindFirstRatingsArgs";
+export { FindFirstRatingsOrThrowArgs } from "./FindFirstRatingsOrThrowArgs";
+export { FindManyRatingsArgs } from "./FindManyRatingsArgs";
+export { FindUniqueRatingsArgs } from "./FindUniqueRatingsArgs";
+export { FindUniqueRatingsOrThrowArgs } from "./FindUniqueRatingsOrThrowArgs";
+export { GroupByRatingsArgs } from "./GroupByRatingsArgs";
+export { UpdateManyRatingsArgs } from "./UpdateManyRatingsArgs";
+export { UpdateOneRatingsArgs } from "./UpdateOneRatingsArgs";
+export { UpsertOneRatingsArgs } from "./UpsertOneRatingsArgs";

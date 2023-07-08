@@ -1,0 +1,1 @@
+export { GenresMovieGenresArgs } from "./GenresMovieGenresArgs";
