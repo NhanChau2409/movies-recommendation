@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: mysecretpassword
     volumes:
-      - ./local/data:/var/lib/postgresql/data
-      - ./local/init-database.sql:/docker-entrypoint-initdb.d/init-database.sql
+      - ./data:/var/lib/postgresql/data
+      - ./init-database.sql:/docker-entrypoint-initdb.d/init-database.sql
     ports:
       - "5432:5432"
