@@ -1,6 +1,5 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["multiSchema"]
+  provider = "prisma-client-js"
 }
 
 generator typegraphql {
@@ -10,62 +9,53 @@ generator typegraphql {
 }
 
 datasource db {
-  provider = "sqlserver"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas  = ["genre", "movie", "rating", "user"]
 }
 
-model Genres {
-  id          Int           @id(map: "PK__Genres__3213E83F02720C18")
-  name        String        @db.NVarChar(255)
-  MovieGenres MovieGenres[]
-
-  @@schema("genre")
+model genres {
+  id           Int            @id @default(autoincrement())
+  genre        String         @db.VarChar(255)
+  movie_genres movie_genres[]
 }
 
-model MovieGenres {
+model movie_genres {
   movie_id Int
   genre_id Int
-  Genres   Genres @relation(fields: [genre_id], references: [id], onDelete: Cascade, map: "FK_movie_genres_genre_id")
-  Movies   Movies @relation(fields: [movie_id], references: [id], onDelete: Cascade, map: "FK_movie_genres_movie_id")
+  genres   genres @relation(fields: [genre_id], references: [id], onDelete: Cascade, map: "fk_movie_genres_genre_id")
+  movies   movies @relation(fields: [movie_id], references: [id], onDelete: Cascade, map: "fk_movie_genres_movie_id")
 
-  @@id([movie_id, genre_id], map: "PK_movie_genres")
-  @@schema("genre")
+  @@id([movie_id, genre_id], map: "pk_movie_genres")
 }
 
-model Movies {
-  id            Int           @id(map: "PK__Movies__3213E83FEC096458")
-  title         String?       @db.NVarChar(255)
-  release_date  DateTime?     @db.Date
+model movies {
+  id            Int            @id
+  title         String?        @db.VarChar(255)
+  release_date  DateTime?      @db.Date
   runtime       Int?
-  overview      String?       @db.NVarChar(Max)
-  popularity    Decimal?      @db.Decimal(10, 2)
-  vote_average  Decimal?      @db.Decimal(3, 2)
+  overview      String?
+  popularity    Decimal?       @db.Decimal(10, 2)
+  vote_average  Decimal?       @db.Decimal(3, 2)
   vote_count    Int?
-  poster_path   String?       @db.NVarChar(255)
-  backdrop_path String?       @db.NVarChar(255)
-  MovieGenres   MovieGenres[]
-  Ratings       Ratings[]
-
-  @@schema("movie")
+  poster_path   String?        @db.VarChar(255)
+  backdrop_path String?        @db.VarChar(255)
+  movie_genres  movie_genres[]
+  ratings       ratings[]
 }
 
-model Ratings {
+model ratings {
   user_id  Int
   movie_id Int
   rating   Float
-  Movies   Movies @relation(fields: [movie_id], references: [id], onDelete: Cascade, map: "FK_Rating_Movie")
-  Users    Users  @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "FK_Rating_User")
+  movies   movies @relation(fields: [movie_id], references: [id], onDelete: Cascade, map: "fk_rating_movie")
+  users    users  @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "fk_rating_user")
 
-  @@id([user_id, movie_id], map: "PK_Rating")
-  @@schema("rating")
+  @@id([user_id, movie_id], map: "pk_rating")
 }
 
-model Users {
-  id       Int       @id(map: "PK__Users__3213E83F60CA92DA")
-  username String    @db.NVarChar(50)
-  password String    @db.NVarChar(50)
-  Ratings  Ratings[]
-
-  @@schema("user")
+model users {
+  id       Int       @id @default(autoincrement())
+  username String    @db.VarChar(50)
+  password String    @db.VarChar(50)
+  ratings  ratings[]
 }

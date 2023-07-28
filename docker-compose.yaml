@@ -7,13 +7,8 @@ services:
       POSTGRES_DB: movie_rate
       POSTGRES_USER: username
       POSTGRES_PASSWORD: mysecretpassword
+    volumes:
+      - ./local/data:/var/lib/postgresql/data
+      - ./local/init-database.sql:/docker-entrypoint-initdb.d/init-database.sql
     ports:
-      - 5432:5432
-  pgadmin:
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
-      PGADMIN_DEFAULT_PASSWORD: pgadminpassword
-    ports:
-      - 80:80
+      - "5432:5432"
