@@ -1,9 +1,10 @@
 import Movie from "./Movie";
+import MovieCarousel from "./MovieCarousel";
 
 const App = () => {
     return (
         <div>
-            <Movie/>
+            <MovieCarousel/>
         </div>
     );
 }

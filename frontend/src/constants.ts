@@ -9,4 +9,11 @@ const POSTER_SIZES = [
     "original"
 ]
 
+const BACKDROP_SIZES= [
+    "w300",
+    "w780",
+    "w1280",
+    "original"
+]
+
 export {SECURE_BASE_URL, POSTER_SIZES}
