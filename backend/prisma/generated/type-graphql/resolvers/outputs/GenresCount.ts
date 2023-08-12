@@ -2,20 +2,20 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { GenresCountMovieGenresArgs } from "./args/GenresCountMovieGenresArgs";
+import { GenresCountMovie_genresArgs } from "./args/GenresCountMovie_genresArgs";
 
 @TypeGraphQL.ObjectType("GenresCount", {})
 export class GenresCount {
-  MovieGenres!: number;
+  movie_genres!: number;
 
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    name: "MovieGenres",
+    name: "movie_genres",
     nullable: false,
   })
-  getMovieGenres(
+  getMovie_genres(
     @TypeGraphQL.Root() root: GenresCount,
-    @TypeGraphQL.Args() args: GenresCountMovieGenresArgs,
+    @TypeGraphQL.Args() args: GenresCountMovie_genresArgs,
   ): number {
-    return root.MovieGenres;
+    return root.movie_genres;
   }
 }

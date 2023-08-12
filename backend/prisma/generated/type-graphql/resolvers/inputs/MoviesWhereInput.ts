@@ -6,7 +6,7 @@ import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { DecimalNullableFilter } from "../inputs/DecimalNullableFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
-import { MovieGenresListRelationFilter } from "../inputs/MovieGenresListRelationFilter";
+import { Movie_genresListRelationFilter } from "../inputs/Movie_genresListRelationFilter";
 import { RatingsListRelationFilter } from "../inputs/RatingsListRelationFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
@@ -77,13 +77,13 @@ export class MoviesWhereInput {
   })
   backdrop_path?: StringNullableFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieGenresListRelationFilter, {
+  @TypeGraphQL.Field((_type) => Movie_genresListRelationFilter, {
     nullable: true,
   })
-  MovieGenres?: MovieGenresListRelationFilter | undefined;
+  movie_genres?: Movie_genresListRelationFilter | undefined;
 
   @TypeGraphQL.Field((_type) => RatingsListRelationFilter, {
     nullable: true,
   })
-  Ratings?: RatingsListRelationFilter | undefined;
+  ratings?: RatingsListRelationFilter | undefined;
 }

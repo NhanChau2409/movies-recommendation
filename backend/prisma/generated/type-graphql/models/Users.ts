@@ -22,7 +22,7 @@ export class Users {
   })
   password!: string;
 
-  Ratings?: Ratings[];
+  ratings?: Ratings[];
 
   @TypeGraphQL.Field((_type) => UsersCount, {
     nullable: true,

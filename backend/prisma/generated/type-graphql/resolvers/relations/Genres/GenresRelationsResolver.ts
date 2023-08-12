@@ -1,8 +1,8 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { Genres } from "../../../models/Genres";
-import { MovieGenres } from "../../../models/MovieGenres";
-import { GenresMovieGenresArgs } from "./args/GenresMovieGenresArgs";
+import { Movie_genres } from "../../../models/Movie_genres";
+import { GenresMovie_genresArgs } from "./args/GenresMovie_genresArgs";
 import {
   transformInfoIntoPrismaArgs,
   getPrismaFromContext,
@@ -11,15 +11,15 @@ import {
 
 @TypeGraphQL.Resolver((_of) => Genres)
 export class GenresRelationsResolver {
-  @TypeGraphQL.FieldResolver((_type) => [MovieGenres], {
+  @TypeGraphQL.FieldResolver((_type) => [Movie_genres], {
     nullable: false,
   })
-  async MovieGenres(
+  async movie_genres(
     @TypeGraphQL.Root() genres: Genres,
     @TypeGraphQL.Ctx() ctx: any,
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
-    @TypeGraphQL.Args() args: GenresMovieGenresArgs,
-  ): Promise<MovieGenres[]> {
+    @TypeGraphQL.Args() args: GenresMovie_genresArgs,
+  ): Promise<Movie_genres[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx)
       .genres.findUniqueOrThrow({
@@ -27,7 +27,7 @@ export class GenresRelationsResolver {
           id: genres.id,
         },
       })
-      .MovieGenres({
+      .movie_genres({
         ...args,
         ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
       });

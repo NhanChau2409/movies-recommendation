@@ -15,10 +15,10 @@ export class RatingsCreateInput {
   @TypeGraphQL.Field((_type) => MoviesCreateNestedOneWithoutRatingsInput, {
     nullable: false,
   })
-  Movies!: MoviesCreateNestedOneWithoutRatingsInput;
+  movies!: MoviesCreateNestedOneWithoutRatingsInput;
 
   @TypeGraphQL.Field((_type) => UsersCreateNestedOneWithoutRatingsInput, {
     nullable: false,
   })
-  Users!: UsersCreateNestedOneWithoutRatingsInput;
+  users!: UsersCreateNestedOneWithoutRatingsInput;
 }

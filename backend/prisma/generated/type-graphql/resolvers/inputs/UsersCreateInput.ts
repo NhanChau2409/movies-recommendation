@@ -6,11 +6,6 @@ import { RatingsCreateNestedManyWithoutUsersInput } from "../inputs/RatingsCreat
 
 @TypeGraphQL.InputType("UsersCreateInput", {})
 export class UsersCreateInput {
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
-  })
-  id!: number;
-
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
   })
@@ -24,5 +19,5 @@ export class UsersCreateInput {
   @TypeGraphQL.Field((_type) => RatingsCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  Ratings?: RatingsCreateNestedManyWithoutUsersInput | undefined;
+  ratings?: RatingsCreateNestedManyWithoutUsersInput | undefined;
 }

@@ -20,7 +20,7 @@ export class GroupByGenresArgs {
   @TypeGraphQL.Field((_type) => [GenresScalarFieldEnum], {
     nullable: false,
   })
-  by!: Array<"id" | "name">;
+  by!: Array<"id" | "genre">;
 
   @TypeGraphQL.Field((_type) => GenresScalarWhereWithAggregatesInput, {
     nullable: true,

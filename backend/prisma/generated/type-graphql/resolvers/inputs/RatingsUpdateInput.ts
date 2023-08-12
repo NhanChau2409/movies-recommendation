@@ -19,7 +19,7 @@ export class RatingsUpdateInput {
       nullable: true,
     },
   )
-  Movies?: MoviesUpdateOneRequiredWithoutRatingsNestedInput | undefined;
+  movies?: MoviesUpdateOneRequiredWithoutRatingsNestedInput | undefined;
 
   @TypeGraphQL.Field(
     (_type) => UsersUpdateOneRequiredWithoutRatingsNestedInput,
@@ -27,5 +27,5 @@ export class RatingsUpdateInput {
       nullable: true,
     },
   )
-  Users?: UsersUpdateOneRequiredWithoutRatingsNestedInput | undefined;
+  users?: UsersUpdateOneRequiredWithoutRatingsNestedInput | undefined;
 }

@@ -22,7 +22,7 @@ export class Ratings {
   })
   rating!: number;
 
-  Movies?: Movies;
+  movies?: Movies;
 
-  Users?: Users;
+  users?: Users;
 }

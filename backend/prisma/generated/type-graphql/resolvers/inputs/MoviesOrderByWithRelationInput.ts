@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieGenresOrderByRelationAggregateInput } from "../inputs/MovieGenresOrderByRelationAggregateInput";
+import { Movie_genresOrderByRelationAggregateInput } from "../inputs/Movie_genresOrderByRelationAggregateInput";
 import { RatingsOrderByRelationAggregateInput } from "../inputs/RatingsOrderByRelationAggregateInput";
 import { SortOrderInput } from "../inputs/SortOrderInput";
 import { SortOrder } from "../../enums/SortOrder";
@@ -59,13 +59,13 @@ export class MoviesOrderByWithRelationInput {
   })
   backdrop_path?: SortOrderInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieGenresOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field((_type) => Movie_genresOrderByRelationAggregateInput, {
     nullable: true,
   })
-  MovieGenres?: MovieGenresOrderByRelationAggregateInput | undefined;
+  movie_genres?: Movie_genresOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field((_type) => RatingsOrderByRelationAggregateInput, {
     nullable: true,
   })
-  Ratings?: RatingsOrderByRelationAggregateInput | undefined;
+  ratings?: RatingsOrderByRelationAggregateInput | undefined;
 }

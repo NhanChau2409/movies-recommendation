@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { MovieGenres } from "../models/MovieGenres";
+import { Movie_genres } from "../models/Movie_genres";
 import { Ratings } from "../models/Ratings";
 import { MoviesCount } from "../resolvers/outputs/MoviesCount";
 
@@ -58,9 +58,9 @@ export class Movies {
   })
   backdrop_path?: string | null;
 
-  MovieGenres?: MovieGenres[];
+  movie_genres?: Movie_genres[];
 
-  Ratings?: Ratings[];
+  ratings?: Ratings[];
 
   @TypeGraphQL.Field((_type) => MoviesCount, {
     nullable: true,

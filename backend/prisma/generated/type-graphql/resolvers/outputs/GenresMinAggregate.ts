@@ -13,5 +13,5 @@ export class GenresMinAggregate {
   @TypeGraphQL.Field((_type) => String, {
     nullable: true,
   })
-  name!: string | null;
+  genre!: string | null;
 }

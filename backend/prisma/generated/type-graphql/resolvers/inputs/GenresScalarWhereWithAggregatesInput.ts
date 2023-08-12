@@ -30,5 +30,5 @@ export class GenresScalarWhereWithAggregatesInput {
   @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
     nullable: true,
   })
-  name?: StringWithAggregatesFilter | undefined;
+  genre?: StringWithAggregatesFilter | undefined;
 }

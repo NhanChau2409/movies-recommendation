@@ -1,7 +1,8 @@
 export { GenresScalarFieldEnum } from "./GenresScalarFieldEnum";
-export { MovieGenresScalarFieldEnum } from "./MovieGenresScalarFieldEnum";
+export { Movie_genresScalarFieldEnum } from "./Movie_genresScalarFieldEnum";
 export { MoviesScalarFieldEnum } from "./MoviesScalarFieldEnum";
 export { NullsOrder } from "./NullsOrder";
+export { QueryMode } from "./QueryMode";
 export { RatingsScalarFieldEnum } from "./RatingsScalarFieldEnum";
 export { SortOrder } from "./SortOrder";
 export { TransactionIsolationLevel } from "./TransactionIsolationLevel";

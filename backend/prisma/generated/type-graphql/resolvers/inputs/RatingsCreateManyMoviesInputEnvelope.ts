@@ -10,4 +10,9 @@ export class RatingsCreateManyMoviesInputEnvelope {
     nullable: false,
   })
   data!: RatingsCreateManyMoviesInput[];
+
+  @TypeGraphQL.Field((_type) => Boolean, {
+    nullable: true,
+  })
+  skipDuplicates?: boolean | undefined;
 }

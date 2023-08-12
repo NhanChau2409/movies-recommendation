@@ -18,7 +18,7 @@ export class GenresGroupBy {
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
   })
-  name!: string;
+  genre!: string;
 
   @TypeGraphQL.Field((_type) => GenresCountAggregate, {
     nullable: true,

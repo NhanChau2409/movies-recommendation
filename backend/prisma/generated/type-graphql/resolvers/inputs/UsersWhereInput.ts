@@ -41,5 +41,5 @@ export class UsersWhereInput {
   @TypeGraphQL.Field((_type) => RatingsListRelationFilter, {
     nullable: true,
   })
-  Ratings?: RatingsListRelationFilter | undefined;
+  ratings?: RatingsListRelationFilter | undefined;
 }

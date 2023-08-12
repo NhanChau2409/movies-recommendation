@@ -5,11 +5,6 @@ import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.InputType("UsersCreateWithoutRatingsInput", {})
 export class UsersCreateWithoutRatingsInput {
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
-  })
-  id!: number;
-
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
   })

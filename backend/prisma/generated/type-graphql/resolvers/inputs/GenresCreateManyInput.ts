@@ -6,12 +6,12 @@ import { DecimalJSScalar } from "../../scalars";
 @TypeGraphQL.InputType("GenresCreateManyInput", {})
 export class GenresCreateManyInput {
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+    nullable: true,
   })
-  id!: number;
+  id?: number | undefined;
 
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
   })
-  name!: string;
+  genre!: string;
 }

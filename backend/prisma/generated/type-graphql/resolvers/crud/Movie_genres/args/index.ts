@@ -1,0 +1,14 @@
+export { AggregateMovie_genresArgs } from "./AggregateMovie_genresArgs";
+export { CreateManyMovie_genresArgs } from "./CreateManyMovie_genresArgs";
+export { CreateOneMovie_genresArgs } from "./CreateOneMovie_genresArgs";
+export { DeleteManyMovie_genresArgs } from "./DeleteManyMovie_genresArgs";
+export { DeleteOneMovie_genresArgs } from "./DeleteOneMovie_genresArgs";
+export { FindFirstMovie_genresArgs } from "./FindFirstMovie_genresArgs";
+export { FindFirstMovie_genresOrThrowArgs } from "./FindFirstMovie_genresOrThrowArgs";
+export { FindManyMovie_genresArgs } from "./FindManyMovie_genresArgs";
+export { FindUniqueMovie_genresArgs } from "./FindUniqueMovie_genresArgs";
+export { FindUniqueMovie_genresOrThrowArgs } from "./FindUniqueMovie_genresOrThrowArgs";
+export { GroupByMovie_genresArgs } from "./GroupByMovie_genresArgs";
+export { UpdateManyMovie_genresArgs } from "./UpdateManyMovie_genresArgs";
+export { UpdateOneMovie_genresArgs } from "./UpdateOneMovie_genresArgs";
+export { UpsertOneMovie_genresArgs } from "./UpsertOneMovie_genresArgs";

@@ -19,7 +19,7 @@ export class GenresOrderByWithAggregationInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
-  name?: "asc" | "desc" | undefined;
+  genre?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field((_type) => GenresCountOrderByAggregateInput, {
     nullable: true,

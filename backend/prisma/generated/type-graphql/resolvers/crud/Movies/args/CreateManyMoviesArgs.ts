@@ -8,4 +8,9 @@ export class CreateManyMoviesArgs {
     nullable: false,
   })
   data!: MoviesCreateManyInput[];
+
+  @TypeGraphQL.Field((_type) => Boolean, {
+    nullable: true,
+  })
+  skipDuplicates?: boolean | undefined;
 }

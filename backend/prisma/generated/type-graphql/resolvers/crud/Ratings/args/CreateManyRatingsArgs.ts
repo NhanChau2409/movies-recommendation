@@ -8,4 +8,9 @@ export class CreateManyRatingsArgs {
     nullable: false,
   })
   data!: RatingsCreateManyInput[];
+
+  @TypeGraphQL.Field((_type) => Boolean, {
+    nullable: true,
+  })
+  skipDuplicates?: boolean | undefined;
 }

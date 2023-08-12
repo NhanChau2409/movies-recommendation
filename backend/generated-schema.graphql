@@ -15,12 +15,12 @@ type AggregateGenres {
   _sum: GenresSumAggregate
 }
 
-type AggregateMovieGenres {
-  _avg: MovieGenresAvgAggregate
-  _count: MovieGenresCountAggregate
-  _max: MovieGenresMaxAggregate
-  _min: MovieGenresMinAggregate
-  _sum: MovieGenresSumAggregate
+type AggregateMovie_genres {
+  _avg: Movie_genresAvgAggregate
+  _count: Movie_genresCountAggregate
+  _max: Movie_genresMaxAggregate
+  _min: Movie_genresMinAggregate
+  _sum: Movie_genresSumAggregate
 }
 
 type AggregateMovies {
@@ -145,10 +145,10 @@ input FloatWithAggregatesFilter {
 }
 
 type Genres {
-  MovieGenres(cursor: MovieGenresWhereUniqueInput, distinct: [MovieGenresScalarFieldEnum!], orderBy: [MovieGenresOrderByWithRelationInput!], skip: Int, take: Int, where: MovieGenresWhereInput): [MovieGenres!]!
   _count: GenresCount
+  genre: String!
   id: Int!
-  name: String!
+  movie_genres(cursor: Movie_genresWhereUniqueInput, distinct: [Movie_genresScalarFieldEnum!], orderBy: [Movie_genresOrderByWithRelationInput!], skip: Int, take: Int, where: Movie_genresWhereInput): [Movie_genres!]!
 }
 
 type GenresAvgAggregate {
@@ -160,45 +160,43 @@ input GenresAvgOrderByAggregateInput {
 }
 
 type GenresCount {
-  MovieGenres(where: MovieGenresWhereInput): Int!
+  movie_genres(where: Movie_genresWhereInput): Int!
 }
 
 type GenresCountAggregate {
   _all: Int!
+  genre: Int!
   id: Int!
-  name: Int!
 }
 
 input GenresCountOrderByAggregateInput {
+  genre: SortOrder
   id: SortOrder
-  name: SortOrder
 }
 
 input GenresCreateInput {
-  MovieGenres: MovieGenresCreateNestedManyWithoutGenresInput
-  id: Int!
-  name: String!
+  genre: String!
+  movie_genres: Movie_genresCreateNestedManyWithoutGenresInput
 }
 
 input GenresCreateManyInput {
-  id: Int!
-  name: String!
+  genre: String!
+  id: Int
 }
 
-input GenresCreateNestedOneWithoutMovieGenresInput {
+input GenresCreateNestedOneWithoutMovie_genresInput {
   connect: GenresWhereUniqueInput
-  connectOrCreate: GenresCreateOrConnectWithoutMovieGenresInput
-  create: GenresCreateWithoutMovieGenresInput
+  connectOrCreate: GenresCreateOrConnectWithoutMovie_genresInput
+  create: GenresCreateWithoutMovie_genresInput
 }
 
-input GenresCreateOrConnectWithoutMovieGenresInput {
-  create: GenresCreateWithoutMovieGenresInput!
+input GenresCreateOrConnectWithoutMovie_genresInput {
+  create: GenresCreateWithoutMovie_genresInput!
   where: GenresWhereUniqueInput!
 }
 
-input GenresCreateWithoutMovieGenresInput {
-  id: Int!
-  name: String!
+input GenresCreateWithoutMovie_genresInput {
+  genre: String!
 }
 
 type GenresGroupBy {
@@ -207,28 +205,28 @@ type GenresGroupBy {
   _max: GenresMaxAggregate
   _min: GenresMinAggregate
   _sum: GenresSumAggregate
+  genre: String!
   id: Int!
-  name: String!
 }
 
 type GenresMaxAggregate {
+  genre: String
   id: Int
-  name: String
 }
 
 input GenresMaxOrderByAggregateInput {
+  genre: SortOrder
   id: SortOrder
-  name: SortOrder
 }
 
 type GenresMinAggregate {
+  genre: String
   id: Int
-  name: String
 }
 
 input GenresMinOrderByAggregateInput {
+  genre: SortOrder
   id: SortOrder
-  name: SortOrder
 }
 
 input GenresOrderByWithAggregationInput {
@@ -237,14 +235,14 @@ input GenresOrderByWithAggregationInput {
   _max: GenresMaxOrderByAggregateInput
   _min: GenresMinOrderByAggregateInput
   _sum: GenresSumOrderByAggregateInput
+  genre: SortOrder
   id: SortOrder
-  name: SortOrder
 }
 
 input GenresOrderByWithRelationInput {
-  MovieGenres: MovieGenresOrderByRelationAggregateInput
+  genre: SortOrder
   id: SortOrder
-  name: SortOrder
+  movie_genres: Movie_genresOrderByRelationAggregateInput
 }
 
 input GenresRelationFilter {
@@ -253,16 +251,16 @@ input GenresRelationFilter {
 }
 
 enum GenresScalarFieldEnum {
+  genre
   id
-  name
 }
 
 input GenresScalarWhereWithAggregatesInput {
   AND: [GenresScalarWhereWithAggregatesInput!]
   NOT: [GenresScalarWhereWithAggregatesInput!]
   OR: [GenresScalarWhereWithAggregatesInput!]
+  genre: StringWithAggregatesFilter
   id: IntWithAggregatesFilter
-  name: StringWithAggregatesFilter
 }
 
 type GenresSumAggregate {
@@ -274,41 +272,38 @@ input GenresSumOrderByAggregateInput {
 }
 
 input GenresUpdateInput {
-  MovieGenres: MovieGenresUpdateManyWithoutGenresNestedInput
-  id: IntFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  genre: StringFieldUpdateOperationsInput
+  movie_genres: Movie_genresUpdateManyWithoutGenresNestedInput
 }
 
 input GenresUpdateManyMutationInput {
-  id: IntFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  genre: StringFieldUpdateOperationsInput
 }
 
-input GenresUpdateOneRequiredWithoutMovieGenresNestedInput {
+input GenresUpdateOneRequiredWithoutMovie_genresNestedInput {
   connect: GenresWhereUniqueInput
-  connectOrCreate: GenresCreateOrConnectWithoutMovieGenresInput
-  create: GenresCreateWithoutMovieGenresInput
-  update: GenresUpdateWithoutMovieGenresInput
-  upsert: GenresUpsertWithoutMovieGenresInput
+  connectOrCreate: GenresCreateOrConnectWithoutMovie_genresInput
+  create: GenresCreateWithoutMovie_genresInput
+  update: GenresUpdateWithoutMovie_genresInput
+  upsert: GenresUpsertWithoutMovie_genresInput
 }
 
-input GenresUpdateWithoutMovieGenresInput {
-  id: IntFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+input GenresUpdateWithoutMovie_genresInput {
+  genre: StringFieldUpdateOperationsInput
 }
 
-input GenresUpsertWithoutMovieGenresInput {
-  create: GenresCreateWithoutMovieGenresInput!
-  update: GenresUpdateWithoutMovieGenresInput!
+input GenresUpsertWithoutMovie_genresInput {
+  create: GenresCreateWithoutMovie_genresInput!
+  update: GenresUpdateWithoutMovie_genresInput!
 }
 
 input GenresWhereInput {
   AND: [GenresWhereInput!]
-  MovieGenres: MovieGenresListRelationFilter
   NOT: [GenresWhereInput!]
   OR: [GenresWhereInput!]
+  genre: StringFilter
   id: IntFilter
-  name: StringFilter
+  movie_genres: Movie_genresListRelationFilter
 }
 
 input GenresWhereUniqueInput {
@@ -377,279 +372,276 @@ input IntWithAggregatesFilter {
   notIn: [Int!]
 }
 
-type MovieGenres {
-  Genres: Genres!
-  Movies: Movies!
+type Movie_genres {
   genre_id: Int!
+  genres: Genres!
   movie_id: Int!
+  movies: Movies!
 }
 
-type MovieGenresAvgAggregate {
+type Movie_genresAvgAggregate {
   genre_id: Float
   movie_id: Float
 }
 
-input MovieGenresAvgOrderByAggregateInput {
+input Movie_genresAvgOrderByAggregateInput {
   genre_id: SortOrder
   movie_id: SortOrder
 }
 
-type MovieGenresCountAggregate {
+type Movie_genresCountAggregate {
   _all: Int!
   genre_id: Int!
   movie_id: Int!
 }
 
-input MovieGenresCountOrderByAggregateInput {
+input Movie_genresCountOrderByAggregateInput {
   genre_id: SortOrder
   movie_id: SortOrder
 }
 
-input MovieGenresCreateInput {
-  Genres: GenresCreateNestedOneWithoutMovieGenresInput!
-  Movies: MoviesCreateNestedOneWithoutMovieGenresInput!
+input Movie_genresCreateInput {
+  genres: GenresCreateNestedOneWithoutMovie_genresInput!
+  movies: MoviesCreateNestedOneWithoutMovie_genresInput!
 }
 
-input MovieGenresCreateManyGenresInput {
+input Movie_genresCreateManyGenresInput {
   movie_id: Int!
 }
 
-input MovieGenresCreateManyGenresInputEnvelope {
-  data: [MovieGenresCreateManyGenresInput!]!
+input Movie_genresCreateManyGenresInputEnvelope {
+  data: [Movie_genresCreateManyGenresInput!]!
+  skipDuplicates: Boolean
 }
 
-input MovieGenresCreateManyInput {
+input Movie_genresCreateManyInput {
   genre_id: Int!
   movie_id: Int!
 }
 
-input MovieGenresCreateManyMoviesInput {
+input Movie_genresCreateManyMoviesInput {
   genre_id: Int!
 }
 
-input MovieGenresCreateManyMoviesInputEnvelope {
-  data: [MovieGenresCreateManyMoviesInput!]!
+input Movie_genresCreateManyMoviesInputEnvelope {
+  data: [Movie_genresCreateManyMoviesInput!]!
+  skipDuplicates: Boolean
 }
 
-input MovieGenresCreateNestedManyWithoutGenresInput {
-  connect: [MovieGenresWhereUniqueInput!]
-  connectOrCreate: [MovieGenresCreateOrConnectWithoutGenresInput!]
-  create: [MovieGenresCreateWithoutGenresInput!]
-  createMany: MovieGenresCreateManyGenresInputEnvelope
+input Movie_genresCreateNestedManyWithoutGenresInput {
+  connect: [Movie_genresWhereUniqueInput!]
+  connectOrCreate: [Movie_genresCreateOrConnectWithoutGenresInput!]
+  create: [Movie_genresCreateWithoutGenresInput!]
+  createMany: Movie_genresCreateManyGenresInputEnvelope
 }
 
-input MovieGenresCreateNestedManyWithoutMoviesInput {
-  connect: [MovieGenresWhereUniqueInput!]
-  connectOrCreate: [MovieGenresCreateOrConnectWithoutMoviesInput!]
-  create: [MovieGenresCreateWithoutMoviesInput!]
-  createMany: MovieGenresCreateManyMoviesInputEnvelope
+input Movie_genresCreateNestedManyWithoutMoviesInput {
+  connect: [Movie_genresWhereUniqueInput!]
+  connectOrCreate: [Movie_genresCreateOrConnectWithoutMoviesInput!]
+  create: [Movie_genresCreateWithoutMoviesInput!]
+  createMany: Movie_genresCreateManyMoviesInputEnvelope
 }
 
-input MovieGenresCreateOrConnectWithoutGenresInput {
-  create: MovieGenresCreateWithoutGenresInput!
-  where: MovieGenresWhereUniqueInput!
+input Movie_genresCreateOrConnectWithoutGenresInput {
+  create: Movie_genresCreateWithoutGenresInput!
+  where: Movie_genresWhereUniqueInput!
 }
 
-input MovieGenresCreateOrConnectWithoutMoviesInput {
-  create: MovieGenresCreateWithoutMoviesInput!
-  where: MovieGenresWhereUniqueInput!
+input Movie_genresCreateOrConnectWithoutMoviesInput {
+  create: Movie_genresCreateWithoutMoviesInput!
+  where: Movie_genresWhereUniqueInput!
 }
 
-input MovieGenresCreateWithoutGenresInput {
-  Movies: MoviesCreateNestedOneWithoutMovieGenresInput!
+input Movie_genresCreateWithoutGenresInput {
+  movies: MoviesCreateNestedOneWithoutMovie_genresInput!
 }
 
-input MovieGenresCreateWithoutMoviesInput {
-  Genres: GenresCreateNestedOneWithoutMovieGenresInput!
+input Movie_genresCreateWithoutMoviesInput {
+  genres: GenresCreateNestedOneWithoutMovie_genresInput!
 }
 
-type MovieGenresGroupBy {
-  _avg: MovieGenresAvgAggregate
-  _count: MovieGenresCountAggregate
-  _max: MovieGenresMaxAggregate
-  _min: MovieGenresMinAggregate
-  _sum: MovieGenresSumAggregate
+type Movie_genresGroupBy {
+  _avg: Movie_genresAvgAggregate
+  _count: Movie_genresCountAggregate
+  _max: Movie_genresMaxAggregate
+  _min: Movie_genresMinAggregate
+  _sum: Movie_genresSumAggregate
   genre_id: Int!
   movie_id: Int!
 }
 
-input MovieGenresListRelationFilter {
-  every: MovieGenresWhereInput
-  none: MovieGenresWhereInput
-  some: MovieGenresWhereInput
+input Movie_genresListRelationFilter {
+  every: Movie_genresWhereInput
+  none: Movie_genresWhereInput
+  some: Movie_genresWhereInput
 }
 
-type MovieGenresMaxAggregate {
+type Movie_genresMaxAggregate {
   genre_id: Int
   movie_id: Int
 }
 
-input MovieGenresMaxOrderByAggregateInput {
+input Movie_genresMaxOrderByAggregateInput {
   genre_id: SortOrder
   movie_id: SortOrder
 }
 
-type MovieGenresMinAggregate {
+type Movie_genresMinAggregate {
   genre_id: Int
   movie_id: Int
 }
 
-input MovieGenresMinOrderByAggregateInput {
+input Movie_genresMinOrderByAggregateInput {
   genre_id: SortOrder
   movie_id: SortOrder
 }
 
-input MovieGenresMovie_idGenre_idCompoundUniqueInput {
-  genre_id: Int!
-  movie_id: Int!
-}
-
-input MovieGenresOrderByRelationAggregateInput {
+input Movie_genresOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input MovieGenresOrderByWithAggregationInput {
-  _avg: MovieGenresAvgOrderByAggregateInput
-  _count: MovieGenresCountOrderByAggregateInput
-  _max: MovieGenresMaxOrderByAggregateInput
-  _min: MovieGenresMinOrderByAggregateInput
-  _sum: MovieGenresSumOrderByAggregateInput
+input Movie_genresOrderByWithAggregationInput {
+  _avg: Movie_genresAvgOrderByAggregateInput
+  _count: Movie_genresCountOrderByAggregateInput
+  _max: Movie_genresMaxOrderByAggregateInput
+  _min: Movie_genresMinOrderByAggregateInput
+  _sum: Movie_genresSumOrderByAggregateInput
   genre_id: SortOrder
   movie_id: SortOrder
 }
 
-input MovieGenresOrderByWithRelationInput {
-  Genres: GenresOrderByWithRelationInput
-  Movies: MoviesOrderByWithRelationInput
+input Movie_genresOrderByWithRelationInput {
   genre_id: SortOrder
+  genres: GenresOrderByWithRelationInput
   movie_id: SortOrder
+  movies: MoviesOrderByWithRelationInput
 }
 
-enum MovieGenresScalarFieldEnum {
+enum Movie_genresScalarFieldEnum {
   genre_id
   movie_id
 }
 
-input MovieGenresScalarWhereInput {
-  AND: [MovieGenresScalarWhereInput!]
-  NOT: [MovieGenresScalarWhereInput!]
-  OR: [MovieGenresScalarWhereInput!]
+input Movie_genresScalarWhereInput {
+  AND: [Movie_genresScalarWhereInput!]
+  NOT: [Movie_genresScalarWhereInput!]
+  OR: [Movie_genresScalarWhereInput!]
   genre_id: IntFilter
   movie_id: IntFilter
 }
 
-input MovieGenresScalarWhereWithAggregatesInput {
-  AND: [MovieGenresScalarWhereWithAggregatesInput!]
-  NOT: [MovieGenresScalarWhereWithAggregatesInput!]
-  OR: [MovieGenresScalarWhereWithAggregatesInput!]
+input Movie_genresScalarWhereWithAggregatesInput {
+  AND: [Movie_genresScalarWhereWithAggregatesInput!]
+  NOT: [Movie_genresScalarWhereWithAggregatesInput!]
+  OR: [Movie_genresScalarWhereWithAggregatesInput!]
   genre_id: IntWithAggregatesFilter
   movie_id: IntWithAggregatesFilter
 }
 
-type MovieGenresSumAggregate {
+type Movie_genresSumAggregate {
   genre_id: Int
   movie_id: Int
 }
 
-input MovieGenresSumOrderByAggregateInput {
+input Movie_genresSumOrderByAggregateInput {
   genre_id: SortOrder
   movie_id: SortOrder
 }
 
-input MovieGenresUpdateInput {
-  Genres: GenresUpdateOneRequiredWithoutMovieGenresNestedInput
-  Movies: MoviesUpdateOneRequiredWithoutMovieGenresNestedInput
+input Movie_genresUpdateInput {
+  genres: GenresUpdateOneRequiredWithoutMovie_genresNestedInput
+  movies: MoviesUpdateOneRequiredWithoutMovie_genresNestedInput
 }
 
-input MovieGenresUpdateManyWithWhereWithoutGenresInput {
-  where: MovieGenresScalarWhereInput!
+input Movie_genresUpdateManyWithWhereWithoutGenresInput {
+  where: Movie_genresScalarWhereInput!
 }
 
-input MovieGenresUpdateManyWithWhereWithoutMoviesInput {
-  where: MovieGenresScalarWhereInput!
+input Movie_genresUpdateManyWithWhereWithoutMoviesInput {
+  where: Movie_genresScalarWhereInput!
 }
 
-input MovieGenresUpdateManyWithoutGenresNestedInput {
-  connect: [MovieGenresWhereUniqueInput!]
-  connectOrCreate: [MovieGenresCreateOrConnectWithoutGenresInput!]
-  create: [MovieGenresCreateWithoutGenresInput!]
-  createMany: MovieGenresCreateManyGenresInputEnvelope
-  delete: [MovieGenresWhereUniqueInput!]
-  deleteMany: [MovieGenresScalarWhereInput!]
-  disconnect: [MovieGenresWhereUniqueInput!]
-  set: [MovieGenresWhereUniqueInput!]
-  update: [MovieGenresUpdateWithWhereUniqueWithoutGenresInput!]
-  updateMany: [MovieGenresUpdateManyWithWhereWithoutGenresInput!]
-  upsert: [MovieGenresUpsertWithWhereUniqueWithoutGenresInput!]
+input Movie_genresUpdateManyWithoutGenresNestedInput {
+  connect: [Movie_genresWhereUniqueInput!]
+  connectOrCreate: [Movie_genresCreateOrConnectWithoutGenresInput!]
+  create: [Movie_genresCreateWithoutGenresInput!]
+  createMany: Movie_genresCreateManyGenresInputEnvelope
+  delete: [Movie_genresWhereUniqueInput!]
+  deleteMany: [Movie_genresScalarWhereInput!]
+  disconnect: [Movie_genresWhereUniqueInput!]
+  set: [Movie_genresWhereUniqueInput!]
+  update: [Movie_genresUpdateWithWhereUniqueWithoutGenresInput!]
+  updateMany: [Movie_genresUpdateManyWithWhereWithoutGenresInput!]
+  upsert: [Movie_genresUpsertWithWhereUniqueWithoutGenresInput!]
 }
 
-input MovieGenresUpdateManyWithoutMoviesNestedInput {
-  connect: [MovieGenresWhereUniqueInput!]
-  connectOrCreate: [MovieGenresCreateOrConnectWithoutMoviesInput!]
-  create: [MovieGenresCreateWithoutMoviesInput!]
-  createMany: MovieGenresCreateManyMoviesInputEnvelope
-  delete: [MovieGenresWhereUniqueInput!]
-  deleteMany: [MovieGenresScalarWhereInput!]
-  disconnect: [MovieGenresWhereUniqueInput!]
-  set: [MovieGenresWhereUniqueInput!]
-  update: [MovieGenresUpdateWithWhereUniqueWithoutMoviesInput!]
-  updateMany: [MovieGenresUpdateManyWithWhereWithoutMoviesInput!]
-  upsert: [MovieGenresUpsertWithWhereUniqueWithoutMoviesInput!]
+input Movie_genresUpdateManyWithoutMoviesNestedInput {
+  connect: [Movie_genresWhereUniqueInput!]
+  connectOrCreate: [Movie_genresCreateOrConnectWithoutMoviesInput!]
+  create: [Movie_genresCreateWithoutMoviesInput!]
+  createMany: Movie_genresCreateManyMoviesInputEnvelope
+  delete: [Movie_genresWhereUniqueInput!]
+  deleteMany: [Movie_genresScalarWhereInput!]
+  disconnect: [Movie_genresWhereUniqueInput!]
+  set: [Movie_genresWhereUniqueInput!]
+  update: [Movie_genresUpdateWithWhereUniqueWithoutMoviesInput!]
+  updateMany: [Movie_genresUpdateManyWithWhereWithoutMoviesInput!]
+  upsert: [Movie_genresUpsertWithWhereUniqueWithoutMoviesInput!]
 }
 
-input MovieGenresUpdateWithWhereUniqueWithoutGenresInput {
-  data: MovieGenresUpdateWithoutGenresInput!
-  where: MovieGenresWhereUniqueInput!
+input Movie_genresUpdateWithWhereUniqueWithoutGenresInput {
+  data: Movie_genresUpdateWithoutGenresInput!
+  where: Movie_genresWhereUniqueInput!
 }
 
-input MovieGenresUpdateWithWhereUniqueWithoutMoviesInput {
-  data: MovieGenresUpdateWithoutMoviesInput!
-  where: MovieGenresWhereUniqueInput!
+input Movie_genresUpdateWithWhereUniqueWithoutMoviesInput {
+  data: Movie_genresUpdateWithoutMoviesInput!
+  where: Movie_genresWhereUniqueInput!
 }
 
-input MovieGenresUpdateWithoutGenresInput {
-  Movies: MoviesUpdateOneRequiredWithoutMovieGenresNestedInput
+input Movie_genresUpdateWithoutGenresInput {
+  movies: MoviesUpdateOneRequiredWithoutMovie_genresNestedInput
 }
 
-input MovieGenresUpdateWithoutMoviesInput {
-  Genres: GenresUpdateOneRequiredWithoutMovieGenresNestedInput
+input Movie_genresUpdateWithoutMoviesInput {
+  genres: GenresUpdateOneRequiredWithoutMovie_genresNestedInput
 }
 
-input MovieGenresUpsertWithWhereUniqueWithoutGenresInput {
-  create: MovieGenresCreateWithoutGenresInput!
-  update: MovieGenresUpdateWithoutGenresInput!
-  where: MovieGenresWhereUniqueInput!
+input Movie_genresUpsertWithWhereUniqueWithoutGenresInput {
+  create: Movie_genresCreateWithoutGenresInput!
+  update: Movie_genresUpdateWithoutGenresInput!
+  where: Movie_genresWhereUniqueInput!
 }
 
-input MovieGenresUpsertWithWhereUniqueWithoutMoviesInput {
-  create: MovieGenresCreateWithoutMoviesInput!
-  update: MovieGenresUpdateWithoutMoviesInput!
-  where: MovieGenresWhereUniqueInput!
+input Movie_genresUpsertWithWhereUniqueWithoutMoviesInput {
+  create: Movie_genresCreateWithoutMoviesInput!
+  update: Movie_genresUpdateWithoutMoviesInput!
+  where: Movie_genresWhereUniqueInput!
 }
 
-input MovieGenresWhereInput {
-  AND: [MovieGenresWhereInput!]
-  Genres: GenresRelationFilter
-  Movies: MoviesRelationFilter
-  NOT: [MovieGenresWhereInput!]
-  OR: [MovieGenresWhereInput!]
+input Movie_genresWhereInput {
+  AND: [Movie_genresWhereInput!]
+  NOT: [Movie_genresWhereInput!]
+  OR: [Movie_genresWhereInput!]
   genre_id: IntFilter
+  genres: GenresRelationFilter
   movie_id: IntFilter
+  movies: MoviesRelationFilter
 }
 
-input MovieGenresWhereUniqueInput {
-  movie_id_genre_id: MovieGenresMovie_idGenre_idCompoundUniqueInput
+input Movie_genresWhereUniqueInput {
+  movie_id_genre_id: movie_genresMovie_idGenre_idCompoundUniqueInput
 }
 
 type Movies {
-  MovieGenres(cursor: MovieGenresWhereUniqueInput, distinct: [MovieGenresScalarFieldEnum!], orderBy: [MovieGenresOrderByWithRelationInput!], skip: Int, take: Int, where: MovieGenresWhereInput): [MovieGenres!]!
-  Ratings(cursor: RatingsWhereUniqueInput, distinct: [RatingsScalarFieldEnum!], orderBy: [RatingsOrderByWithRelationInput!], skip: Int, take: Int, where: RatingsWhereInput): [Ratings!]!
   _count: MoviesCount
   backdrop_path: String
   id: Int!
+  movie_genres(cursor: Movie_genresWhereUniqueInput, distinct: [Movie_genresScalarFieldEnum!], orderBy: [Movie_genresOrderByWithRelationInput!], skip: Int, take: Int, where: Movie_genresWhereInput): [Movie_genres!]!
   overview: String
   popularity: Decimal
   poster_path: String
+  ratings(cursor: RatingsWhereUniqueInput, distinct: [RatingsScalarFieldEnum!], orderBy: [RatingsOrderByWithRelationInput!], skip: Int, take: Int, where: RatingsWhereInput): [Ratings!]!
   release_date: DateTime
   runtime: Int
   title: String
@@ -674,8 +666,8 @@ input MoviesAvgOrderByAggregateInput {
 }
 
 type MoviesCount {
-  MovieGenres(where: MovieGenresWhereInput): Int!
-  Ratings(where: RatingsWhereInput): Int!
+  movie_genres(where: Movie_genresWhereInput): Int!
+  ratings(where: RatingsWhereInput): Int!
 }
 
 type MoviesCountAggregate {
@@ -706,13 +698,13 @@ input MoviesCountOrderByAggregateInput {
 }
 
 input MoviesCreateInput {
-  MovieGenres: MovieGenresCreateNestedManyWithoutMoviesInput
-  Ratings: RatingsCreateNestedManyWithoutMoviesInput
   backdrop_path: String
   id: Int!
+  movie_genres: Movie_genresCreateNestedManyWithoutMoviesInput
   overview: String
   popularity: Decimal
   poster_path: String
+  ratings: RatingsCreateNestedManyWithoutMoviesInput
   release_date: DateTime
   runtime: Int
   title: String
@@ -733,10 +725,10 @@ input MoviesCreateManyInput {
   vote_count: Int
 }
 
-input MoviesCreateNestedOneWithoutMovieGenresInput {
+input MoviesCreateNestedOneWithoutMovie_genresInput {
   connect: MoviesWhereUniqueInput
-  connectOrCreate: MoviesCreateOrConnectWithoutMovieGenresInput
-  create: MoviesCreateWithoutMovieGenresInput
+  connectOrCreate: MoviesCreateOrConnectWithoutMovie_genresInput
+  create: MoviesCreateWithoutMovie_genresInput
 }
 
 input MoviesCreateNestedOneWithoutRatingsInput {
@@ -745,8 +737,8 @@ input MoviesCreateNestedOneWithoutRatingsInput {
   create: MoviesCreateWithoutRatingsInput
 }
 
-input MoviesCreateOrConnectWithoutMovieGenresInput {
-  create: MoviesCreateWithoutMovieGenresInput!
+input MoviesCreateOrConnectWithoutMovie_genresInput {
+  create: MoviesCreateWithoutMovie_genresInput!
   where: MoviesWhereUniqueInput!
 }
 
@@ -755,13 +747,13 @@ input MoviesCreateOrConnectWithoutRatingsInput {
   where: MoviesWhereUniqueInput!
 }
 
-input MoviesCreateWithoutMovieGenresInput {
-  Ratings: RatingsCreateNestedManyWithoutMoviesInput
+input MoviesCreateWithoutMovie_genresInput {
   backdrop_path: String
   id: Int!
   overview: String
   popularity: Decimal
   poster_path: String
+  ratings: RatingsCreateNestedManyWithoutMoviesInput
   release_date: DateTime
   runtime: Int
   title: String
@@ -770,9 +762,9 @@ input MoviesCreateWithoutMovieGenresInput {
 }
 
 input MoviesCreateWithoutRatingsInput {
-  MovieGenres: MovieGenresCreateNestedManyWithoutMoviesInput
   backdrop_path: String
   id: Int!
+  movie_genres: Movie_genresCreateNestedManyWithoutMoviesInput
   overview: String
   popularity: Decimal
   poster_path: String
@@ -872,13 +864,13 @@ input MoviesOrderByWithAggregationInput {
 }
 
 input MoviesOrderByWithRelationInput {
-  MovieGenres: MovieGenresOrderByRelationAggregateInput
-  Ratings: RatingsOrderByRelationAggregateInput
   backdrop_path: SortOrderInput
   id: SortOrder
+  movie_genres: Movie_genresOrderByRelationAggregateInput
   overview: SortOrderInput
   popularity: SortOrderInput
   poster_path: SortOrderInput
+  ratings: RatingsOrderByRelationAggregateInput
   release_date: SortOrderInput
   runtime: SortOrderInput
   title: SortOrderInput
@@ -937,13 +929,13 @@ input MoviesSumOrderByAggregateInput {
 }
 
 input MoviesUpdateInput {
-  MovieGenres: MovieGenresUpdateManyWithoutMoviesNestedInput
-  Ratings: RatingsUpdateManyWithoutMoviesNestedInput
   backdrop_path: NullableStringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
+  movie_genres: Movie_genresUpdateManyWithoutMoviesNestedInput
   overview: NullableStringFieldUpdateOperationsInput
   popularity: NullableDecimalFieldUpdateOperationsInput
   poster_path: NullableStringFieldUpdateOperationsInput
+  ratings: RatingsUpdateManyWithoutMoviesNestedInput
   release_date: NullableDateTimeFieldUpdateOperationsInput
   runtime: NullableIntFieldUpdateOperationsInput
   title: NullableStringFieldUpdateOperationsInput
@@ -964,12 +956,12 @@ input MoviesUpdateManyMutationInput {
   vote_count: NullableIntFieldUpdateOperationsInput
 }
 
-input MoviesUpdateOneRequiredWithoutMovieGenresNestedInput {
+input MoviesUpdateOneRequiredWithoutMovie_genresNestedInput {
   connect: MoviesWhereUniqueInput
-  connectOrCreate: MoviesCreateOrConnectWithoutMovieGenresInput
-  create: MoviesCreateWithoutMovieGenresInput
-  update: MoviesUpdateWithoutMovieGenresInput
-  upsert: MoviesUpsertWithoutMovieGenresInput
+  connectOrCreate: MoviesCreateOrConnectWithoutMovie_genresInput
+  create: MoviesCreateWithoutMovie_genresInput
+  update: MoviesUpdateWithoutMovie_genresInput
+  upsert: MoviesUpsertWithoutMovie_genresInput
 }
 
 input MoviesUpdateOneRequiredWithoutRatingsNestedInput {
@@ -980,13 +972,13 @@ input MoviesUpdateOneRequiredWithoutRatingsNestedInput {
   upsert: MoviesUpsertWithoutRatingsInput
 }
 
-input MoviesUpdateWithoutMovieGenresInput {
-  Ratings: RatingsUpdateManyWithoutMoviesNestedInput
+input MoviesUpdateWithoutMovie_genresInput {
   backdrop_path: NullableStringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   overview: NullableStringFieldUpdateOperationsInput
   popularity: NullableDecimalFieldUpdateOperationsInput
   poster_path: NullableStringFieldUpdateOperationsInput
+  ratings: RatingsUpdateManyWithoutMoviesNestedInput
   release_date: NullableDateTimeFieldUpdateOperationsInput
   runtime: NullableIntFieldUpdateOperationsInput
   title: NullableStringFieldUpdateOperationsInput
@@ -995,9 +987,9 @@ input MoviesUpdateWithoutMovieGenresInput {
 }
 
 input MoviesUpdateWithoutRatingsInput {
-  MovieGenres: MovieGenresUpdateManyWithoutMoviesNestedInput
   backdrop_path: NullableStringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
+  movie_genres: Movie_genresUpdateManyWithoutMoviesNestedInput
   overview: NullableStringFieldUpdateOperationsInput
   popularity: NullableDecimalFieldUpdateOperationsInput
   poster_path: NullableStringFieldUpdateOperationsInput
@@ -1008,9 +1000,9 @@ input MoviesUpdateWithoutRatingsInput {
   vote_count: NullableIntFieldUpdateOperationsInput
 }
 
-input MoviesUpsertWithoutMovieGenresInput {
-  create: MoviesCreateWithoutMovieGenresInput!
-  update: MoviesUpdateWithoutMovieGenresInput!
+input MoviesUpsertWithoutMovie_genresInput {
+  create: MoviesCreateWithoutMovie_genresInput!
+  update: MoviesUpdateWithoutMovie_genresInput!
 }
 
 input MoviesUpsertWithoutRatingsInput {
@@ -1020,15 +1012,15 @@ input MoviesUpsertWithoutRatingsInput {
 
 input MoviesWhereInput {
   AND: [MoviesWhereInput!]
-  MovieGenres: MovieGenresListRelationFilter
   NOT: [MoviesWhereInput!]
   OR: [MoviesWhereInput!]
-  Ratings: RatingsListRelationFilter
   backdrop_path: StringNullableFilter
   id: IntFilter
+  movie_genres: Movie_genresListRelationFilter
   overview: StringNullableFilter
   popularity: DecimalNullableFilter
   poster_path: StringNullableFilter
+  ratings: RatingsListRelationFilter
   release_date: DateTimeNullableFilter
   runtime: IntNullableFilter
   title: StringNullableFilter
@@ -1041,38 +1033,38 @@ input MoviesWhereUniqueInput {
 }
 
 type Mutation {
-  createManyGenres(data: [GenresCreateManyInput!]!): AffectedRowsOutput!
-  createManyMovieGenres(data: [MovieGenresCreateManyInput!]!): AffectedRowsOutput!
-  createManyMovies(data: [MoviesCreateManyInput!]!): AffectedRowsOutput!
-  createManyRatings(data: [RatingsCreateManyInput!]!): AffectedRowsOutput!
-  createManyUsers(data: [UsersCreateManyInput!]!): AffectedRowsOutput!
+  createManyGenres(data: [GenresCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyMovie_genres(data: [Movie_genresCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyMovies(data: [MoviesCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyRatings(data: [RatingsCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyUsers(data: [UsersCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createOneGenres(data: GenresCreateInput!): Genres!
-  createOneMovieGenres(data: MovieGenresCreateInput!): MovieGenres!
+  createOneMovie_genres(data: Movie_genresCreateInput!): Movie_genres!
   createOneMovies(data: MoviesCreateInput!): Movies!
   createOneRatings(data: RatingsCreateInput!): Ratings!
   createOneUsers(data: UsersCreateInput!): Users!
   deleteManyGenres(where: GenresWhereInput): AffectedRowsOutput!
-  deleteManyMovieGenres(where: MovieGenresWhereInput): AffectedRowsOutput!
+  deleteManyMovie_genres(where: Movie_genresWhereInput): AffectedRowsOutput!
   deleteManyMovies(where: MoviesWhereInput): AffectedRowsOutput!
   deleteManyRatings(where: RatingsWhereInput): AffectedRowsOutput!
   deleteManyUsers(where: UsersWhereInput): AffectedRowsOutput!
   deleteOneGenres(where: GenresWhereUniqueInput!): Genres
-  deleteOneMovieGenres(where: MovieGenresWhereUniqueInput!): MovieGenres
+  deleteOneMovie_genres(where: Movie_genresWhereUniqueInput!): Movie_genres
   deleteOneMovies(where: MoviesWhereUniqueInput!): Movies
   deleteOneRatings(where: RatingsWhereUniqueInput!): Ratings
   deleteOneUsers(where: UsersWhereUniqueInput!): Users
   updateManyGenres(data: GenresUpdateManyMutationInput!, where: GenresWhereInput): AffectedRowsOutput!
-  updateManyMovieGenres(where: MovieGenresWhereInput): AffectedRowsOutput!
+  updateManyMovie_genres(where: Movie_genresWhereInput): AffectedRowsOutput!
   updateManyMovies(data: MoviesUpdateManyMutationInput!, where: MoviesWhereInput): AffectedRowsOutput!
   updateManyRatings(data: RatingsUpdateManyMutationInput!, where: RatingsWhereInput): AffectedRowsOutput!
   updateManyUsers(data: UsersUpdateManyMutationInput!, where: UsersWhereInput): AffectedRowsOutput!
   updateOneGenres(data: GenresUpdateInput!, where: GenresWhereUniqueInput!): Genres
-  updateOneMovieGenres(data: MovieGenresUpdateInput!, where: MovieGenresWhereUniqueInput!): MovieGenres
+  updateOneMovie_genres(data: Movie_genresUpdateInput!, where: Movie_genresWhereUniqueInput!): Movie_genres
   updateOneMovies(data: MoviesUpdateInput!, where: MoviesWhereUniqueInput!): Movies
   updateOneRatings(data: RatingsUpdateInput!, where: RatingsWhereUniqueInput!): Ratings
   updateOneUsers(data: UsersUpdateInput!, where: UsersWhereUniqueInput!): Users
   upsertOneGenres(create: GenresCreateInput!, update: GenresUpdateInput!, where: GenresWhereUniqueInput!): Genres!
-  upsertOneMovieGenres(create: MovieGenresCreateInput!, update: MovieGenresUpdateInput!, where: MovieGenresWhereUniqueInput!): MovieGenres!
+  upsertOneMovie_genres(create: Movie_genresCreateInput!, update: Movie_genresUpdateInput!, where: Movie_genresWhereUniqueInput!): Movie_genres!
   upsertOneMovies(create: MoviesCreateInput!, update: MoviesUpdateInput!, where: MoviesWhereUniqueInput!): Movies!
   upsertOneRatings(create: RatingsCreateInput!, update: RatingsUpdateInput!, where: RatingsWhereUniqueInput!): Ratings!
   upsertOneUsers(create: UsersCreateInput!, update: UsersUpdateInput!, where: UsersWhereUniqueInput!): Users!
@@ -1315,14 +1307,14 @@ enum NullsOrder {
 
 type Query {
   aggregateGenres(cursor: GenresWhereUniqueInput, orderBy: [GenresOrderByWithRelationInput!], skip: Int, take: Int, where: GenresWhereInput): AggregateGenres!
-  aggregateMovieGenres(cursor: MovieGenresWhereUniqueInput, orderBy: [MovieGenresOrderByWithRelationInput!], skip: Int, take: Int, where: MovieGenresWhereInput): AggregateMovieGenres!
+  aggregateMovie_genres(cursor: Movie_genresWhereUniqueInput, orderBy: [Movie_genresOrderByWithRelationInput!], skip: Int, take: Int, where: Movie_genresWhereInput): AggregateMovie_genres!
   aggregateMovies(cursor: MoviesWhereUniqueInput, orderBy: [MoviesOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWhereInput): AggregateMovies!
   aggregateRatings(cursor: RatingsWhereUniqueInput, orderBy: [RatingsOrderByWithRelationInput!], skip: Int, take: Int, where: RatingsWhereInput): AggregateRatings!
   aggregateUsers(cursor: UsersWhereUniqueInput, orderBy: [UsersOrderByWithRelationInput!], skip: Int, take: Int, where: UsersWhereInput): AggregateUsers!
   findFirstGenres(cursor: GenresWhereUniqueInput, distinct: [GenresScalarFieldEnum!], orderBy: [GenresOrderByWithRelationInput!], skip: Int, take: Int, where: GenresWhereInput): Genres
   findFirstGenresOrThrow(cursor: GenresWhereUniqueInput, distinct: [GenresScalarFieldEnum!], orderBy: [GenresOrderByWithRelationInput!], skip: Int, take: Int, where: GenresWhereInput): Genres
-  findFirstMovieGenres(cursor: MovieGenresWhereUniqueInput, distinct: [MovieGenresScalarFieldEnum!], orderBy: [MovieGenresOrderByWithRelationInput!], skip: Int, take: Int, where: MovieGenresWhereInput): MovieGenres
-  findFirstMovieGenresOrThrow(cursor: MovieGenresWhereUniqueInput, distinct: [MovieGenresScalarFieldEnum!], orderBy: [MovieGenresOrderByWithRelationInput!], skip: Int, take: Int, where: MovieGenresWhereInput): MovieGenres
+  findFirstMovie_genres(cursor: Movie_genresWhereUniqueInput, distinct: [Movie_genresScalarFieldEnum!], orderBy: [Movie_genresOrderByWithRelationInput!], skip: Int, take: Int, where: Movie_genresWhereInput): Movie_genres
+  findFirstMovie_genresOrThrow(cursor: Movie_genresWhereUniqueInput, distinct: [Movie_genresScalarFieldEnum!], orderBy: [Movie_genresOrderByWithRelationInput!], skip: Int, take: Int, where: Movie_genresWhereInput): Movie_genres
   findFirstMovies(cursor: MoviesWhereUniqueInput, distinct: [MoviesScalarFieldEnum!], orderBy: [MoviesOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWhereInput): Movies
   findFirstMoviesOrThrow(cursor: MoviesWhereUniqueInput, distinct: [MoviesScalarFieldEnum!], orderBy: [MoviesOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWhereInput): Movies
   findFirstRatings(cursor: RatingsWhereUniqueInput, distinct: [RatingsScalarFieldEnum!], orderBy: [RatingsOrderByWithRelationInput!], skip: Int, take: Int, where: RatingsWhereInput): Ratings
@@ -1330,14 +1322,14 @@ type Query {
   findFirstUsers(cursor: UsersWhereUniqueInput, distinct: [UsersScalarFieldEnum!], orderBy: [UsersOrderByWithRelationInput!], skip: Int, take: Int, where: UsersWhereInput): Users
   findFirstUsersOrThrow(cursor: UsersWhereUniqueInput, distinct: [UsersScalarFieldEnum!], orderBy: [UsersOrderByWithRelationInput!], skip: Int, take: Int, where: UsersWhereInput): Users
   findManyGenres(cursor: GenresWhereUniqueInput, distinct: [GenresScalarFieldEnum!], orderBy: [GenresOrderByWithRelationInput!], skip: Int, take: Int, where: GenresWhereInput): [Genres!]!
-  findManyMovieGenres(cursor: MovieGenresWhereUniqueInput, distinct: [MovieGenresScalarFieldEnum!], orderBy: [MovieGenresOrderByWithRelationInput!], skip: Int, take: Int, where: MovieGenresWhereInput): [MovieGenres!]!
+  findManyMovie_genres(cursor: Movie_genresWhereUniqueInput, distinct: [Movie_genresScalarFieldEnum!], orderBy: [Movie_genresOrderByWithRelationInput!], skip: Int, take: Int, where: Movie_genresWhereInput): [Movie_genres!]!
   findManyMovies(cursor: MoviesWhereUniqueInput, distinct: [MoviesScalarFieldEnum!], orderBy: [MoviesOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWhereInput): [Movies!]!
   findManyRatings(cursor: RatingsWhereUniqueInput, distinct: [RatingsScalarFieldEnum!], orderBy: [RatingsOrderByWithRelationInput!], skip: Int, take: Int, where: RatingsWhereInput): [Ratings!]!
   findManyUsers(cursor: UsersWhereUniqueInput, distinct: [UsersScalarFieldEnum!], orderBy: [UsersOrderByWithRelationInput!], skip: Int, take: Int, where: UsersWhereInput): [Users!]!
   findUniqueGenres(where: GenresWhereUniqueInput!): Genres
   findUniqueGenresOrThrow(where: GenresWhereUniqueInput!): Genres
-  findUniqueMovieGenres(where: MovieGenresWhereUniqueInput!): MovieGenres
-  findUniqueMovieGenresOrThrow(where: MovieGenresWhereUniqueInput!): MovieGenres
+  findUniqueMovie_genres(where: Movie_genresWhereUniqueInput!): Movie_genres
+  findUniqueMovie_genresOrThrow(where: Movie_genresWhereUniqueInput!): Movie_genres
   findUniqueMovies(where: MoviesWhereUniqueInput!): Movies
   findUniqueMoviesOrThrow(where: MoviesWhereUniqueInput!): Movies
   findUniqueRatings(where: RatingsWhereUniqueInput!): Ratings
@@ -1345,18 +1337,23 @@ type Query {
   findUniqueUsers(where: UsersWhereUniqueInput!): Users
   findUniqueUsersOrThrow(where: UsersWhereUniqueInput!): Users
   groupByGenres(by: [GenresScalarFieldEnum!]!, having: GenresScalarWhereWithAggregatesInput, orderBy: [GenresOrderByWithAggregationInput!], skip: Int, take: Int, where: GenresWhereInput): [GenresGroupBy!]!
-  groupByMovieGenres(by: [MovieGenresScalarFieldEnum!]!, having: MovieGenresScalarWhereWithAggregatesInput, orderBy: [MovieGenresOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieGenresWhereInput): [MovieGenresGroupBy!]!
+  groupByMovie_genres(by: [Movie_genresScalarFieldEnum!]!, having: Movie_genresScalarWhereWithAggregatesInput, orderBy: [Movie_genresOrderByWithAggregationInput!], skip: Int, take: Int, where: Movie_genresWhereInput): [Movie_genresGroupBy!]!
   groupByMovies(by: [MoviesScalarFieldEnum!]!, having: MoviesScalarWhereWithAggregatesInput, orderBy: [MoviesOrderByWithAggregationInput!], skip: Int, take: Int, where: MoviesWhereInput): [MoviesGroupBy!]!
   groupByRatings(by: [RatingsScalarFieldEnum!]!, having: RatingsScalarWhereWithAggregatesInput, orderBy: [RatingsOrderByWithAggregationInput!], skip: Int, take: Int, where: RatingsWhereInput): [RatingsGroupBy!]!
   groupByUsers(by: [UsersScalarFieldEnum!]!, having: UsersScalarWhereWithAggregatesInput, orderBy: [UsersOrderByWithAggregationInput!], skip: Int, take: Int, where: UsersWhereInput): [UsersGroupBy!]!
 }
 
+enum QueryMode {
+  default
+  insensitive
+}
+
 type Ratings {
-  Movies: Movies!
-  Users: Users!
   movie_id: Int!
+  movies: Movies!
   rating: Float!
   user_id: Int!
+  users: Users!
 }
 
 type RatingsAvgAggregate {
@@ -1385,9 +1382,9 @@ input RatingsCountOrderByAggregateInput {
 }
 
 input RatingsCreateInput {
-  Movies: MoviesCreateNestedOneWithoutRatingsInput!
-  Users: UsersCreateNestedOneWithoutRatingsInput!
+  movies: MoviesCreateNestedOneWithoutRatingsInput!
   rating: Float!
+  users: UsersCreateNestedOneWithoutRatingsInput!
 }
 
 input RatingsCreateManyInput {
@@ -1403,6 +1400,7 @@ input RatingsCreateManyMoviesInput {
 
 input RatingsCreateManyMoviesInputEnvelope {
   data: [RatingsCreateManyMoviesInput!]!
+  skipDuplicates: Boolean
 }
 
 input RatingsCreateManyUsersInput {
@@ -1412,6 +1410,7 @@ input RatingsCreateManyUsersInput {
 
 input RatingsCreateManyUsersInputEnvelope {
   data: [RatingsCreateManyUsersInput!]!
+  skipDuplicates: Boolean
 }
 
 input RatingsCreateNestedManyWithoutMoviesInput {
@@ -1439,12 +1438,12 @@ input RatingsCreateOrConnectWithoutUsersInput {
 }
 
 input RatingsCreateWithoutMoviesInput {
-  Users: UsersCreateNestedOneWithoutRatingsInput!
   rating: Float!
+  users: UsersCreateNestedOneWithoutRatingsInput!
 }
 
 input RatingsCreateWithoutUsersInput {
-  Movies: MoviesCreateNestedOneWithoutRatingsInput!
+  movies: MoviesCreateNestedOneWithoutRatingsInput!
   rating: Float!
 }
 
@@ -1505,11 +1504,11 @@ input RatingsOrderByWithAggregationInput {
 }
 
 input RatingsOrderByWithRelationInput {
-  Movies: MoviesOrderByWithRelationInput
-  Users: UsersOrderByWithRelationInput
   movie_id: SortOrder
+  movies: MoviesOrderByWithRelationInput
   rating: SortOrder
   user_id: SortOrder
+  users: UsersOrderByWithRelationInput
 }
 
 enum RatingsScalarFieldEnum {
@@ -1549,9 +1548,9 @@ input RatingsSumOrderByAggregateInput {
 }
 
 input RatingsUpdateInput {
-  Movies: MoviesUpdateOneRequiredWithoutRatingsNestedInput
-  Users: UsersUpdateOneRequiredWithoutRatingsNestedInput
+  movies: MoviesUpdateOneRequiredWithoutRatingsNestedInput
   rating: FloatFieldUpdateOperationsInput
+  users: UsersUpdateOneRequiredWithoutRatingsNestedInput
 }
 
 input RatingsUpdateManyMutationInput {
@@ -1607,12 +1606,12 @@ input RatingsUpdateWithWhereUniqueWithoutUsersInput {
 }
 
 input RatingsUpdateWithoutMoviesInput {
-  Users: UsersUpdateOneRequiredWithoutRatingsNestedInput
   rating: FloatFieldUpdateOperationsInput
+  users: UsersUpdateOneRequiredWithoutRatingsNestedInput
 }
 
 input RatingsUpdateWithoutUsersInput {
-  Movies: MoviesUpdateOneRequiredWithoutRatingsNestedInput
+  movies: MoviesUpdateOneRequiredWithoutRatingsNestedInput
   rating: FloatFieldUpdateOperationsInput
 }
 
@@ -1628,24 +1627,19 @@ input RatingsUpsertWithWhereUniqueWithoutUsersInput {
   where: RatingsWhereUniqueInput!
 }
 
-input RatingsUser_idMovie_idCompoundUniqueInput {
-  movie_id: Int!
-  user_id: Int!
-}
-
 input RatingsWhereInput {
   AND: [RatingsWhereInput!]
-  Movies: MoviesRelationFilter
   NOT: [RatingsWhereInput!]
   OR: [RatingsWhereInput!]
-  Users: UsersRelationFilter
   movie_id: IntFilter
+  movies: MoviesRelationFilter
   rating: FloatFilter
   user_id: IntFilter
+  users: UsersRelationFilter
 }
 
 input RatingsWhereUniqueInput {
-  user_id_movie_id: RatingsUser_idMovie_idCompoundUniqueInput
+  user_id_movie_id: ratingsUser_idMovie_idCompoundUniqueInput
 }
 
 enum SortOrder {
@@ -1671,6 +1665,7 @@ input StringFilter {
   in: [String!]
   lt: String
   lte: String
+  mode: QueryMode
   not: NestedStringFilter
   notIn: [String!]
   startsWith: String
@@ -1685,6 +1680,7 @@ input StringNullableFilter {
   in: [String!]
   lt: String
   lte: String
+  mode: QueryMode
   not: NestedStringNullableFilter
   notIn: [String!]
   startsWith: String
@@ -1702,6 +1698,7 @@ input StringNullableWithAggregatesFilter {
   in: [String!]
   lt: String
   lte: String
+  mode: QueryMode
   not: NestedStringNullableWithAggregatesFilter
   notIn: [String!]
   startsWith: String
@@ -1719,16 +1716,17 @@ input StringWithAggregatesFilter {
   in: [String!]
   lt: String
   lte: String
+  mode: QueryMode
   not: NestedStringWithAggregatesFilter
   notIn: [String!]
   startsWith: String
 }
 
 type Users {
-  Ratings(cursor: RatingsWhereUniqueInput, distinct: [RatingsScalarFieldEnum!], orderBy: [RatingsOrderByWithRelationInput!], skip: Int, take: Int, where: RatingsWhereInput): [Ratings!]!
   _count: UsersCount
   id: Int!
   password: String!
+  ratings(cursor: RatingsWhereUniqueInput, distinct: [RatingsScalarFieldEnum!], orderBy: [RatingsOrderByWithRelationInput!], skip: Int, take: Int, where: RatingsWhereInput): [Ratings!]!
   username: String!
 }
 
@@ -1741,7 +1739,7 @@ input UsersAvgOrderByAggregateInput {
 }
 
 type UsersCount {
-  Ratings(where: RatingsWhereInput): Int!
+  ratings(where: RatingsWhereInput): Int!
 }
 
 type UsersCountAggregate {
@@ -1758,14 +1756,13 @@ input UsersCountOrderByAggregateInput {
 }
 
 input UsersCreateInput {
-  Ratings: RatingsCreateNestedManyWithoutUsersInput
-  id: Int!
   password: String!
+  ratings: RatingsCreateNestedManyWithoutUsersInput
   username: String!
 }
 
 input UsersCreateManyInput {
-  id: Int!
+  id: Int
   password: String!
   username: String!
 }
@@ -1782,7 +1779,6 @@ input UsersCreateOrConnectWithoutRatingsInput {
 }
 
 input UsersCreateWithoutRatingsInput {
-  id: Int!
   password: String!
   username: String!
 }
@@ -1834,9 +1830,9 @@ input UsersOrderByWithAggregationInput {
 }
 
 input UsersOrderByWithRelationInput {
-  Ratings: RatingsOrderByRelationAggregateInput
   id: SortOrder
   password: SortOrder
+  ratings: RatingsOrderByRelationAggregateInput
   username: SortOrder
 }
 
@@ -1869,14 +1865,12 @@ input UsersSumOrderByAggregateInput {
 }
 
 input UsersUpdateInput {
-  Ratings: RatingsUpdateManyWithoutUsersNestedInput
-  id: IntFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  ratings: RatingsUpdateManyWithoutUsersNestedInput
   username: StringFieldUpdateOperationsInput
 }
 
 input UsersUpdateManyMutationInput {
-  id: IntFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
   username: StringFieldUpdateOperationsInput
 }
@@ -1890,7 +1884,6 @@ input UsersUpdateOneRequiredWithoutRatingsNestedInput {
 }
 
 input UsersUpdateWithoutRatingsInput {
-  id: IntFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
   username: StringFieldUpdateOperationsInput
 }
@@ -1904,12 +1897,22 @@ input UsersWhereInput {
   AND: [UsersWhereInput!]
   NOT: [UsersWhereInput!]
   OR: [UsersWhereInput!]
-  Ratings: RatingsListRelationFilter
   id: IntFilter
   password: StringFilter
+  ratings: RatingsListRelationFilter
   username: StringFilter
 }
 
 input UsersWhereUniqueInput {
   id: Int
+}
+
+input movie_genresMovie_idGenre_idCompoundUniqueInput {
+  genre_id: Int!
+  movie_id: Int!
+}
+
+input ratingsUser_idMovie_idCompoundUniqueInput {
+  movie_id: Int!
+  user_id: Int!
 }

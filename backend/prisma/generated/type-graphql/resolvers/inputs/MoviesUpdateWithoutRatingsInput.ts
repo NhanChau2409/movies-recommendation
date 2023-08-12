@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
-import { MovieGenresUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieGenresUpdateManyWithoutMoviesNestedInput";
+import { Movie_genresUpdateManyWithoutMoviesNestedInput } from "../inputs/Movie_genresUpdateManyWithoutMoviesNestedInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableDecimalFieldUpdateOperationsInput } from "../inputs/NullableDecimalFieldUpdateOperationsInput";
 import { NullableIntFieldUpdateOperationsInput } from "../inputs/NullableIntFieldUpdateOperationsInput";
@@ -61,8 +61,11 @@ export class MoviesUpdateWithoutRatingsInput {
   })
   backdrop_path?: NullableStringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieGenresUpdateManyWithoutMoviesNestedInput, {
-    nullable: true,
-  })
-  MovieGenres?: MovieGenresUpdateManyWithoutMoviesNestedInput | undefined;
+  @TypeGraphQL.Field(
+    (_type) => Movie_genresUpdateManyWithoutMoviesNestedInput,
+    {
+      nullable: true,
+    },
+  )
+  movie_genres?: Movie_genresUpdateManyWithoutMoviesNestedInput | undefined;
 }

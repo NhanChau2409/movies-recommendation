@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieGenresCreateNestedManyWithoutMoviesInput } from "../inputs/MovieGenresCreateNestedManyWithoutMoviesInput";
+import { Movie_genresCreateNestedManyWithoutMoviesInput } from "../inputs/Movie_genresCreateNestedManyWithoutMoviesInput";
 import { RatingsCreateNestedManyWithoutMoviesInput } from "../inputs/RatingsCreateNestedManyWithoutMoviesInput";
 
 @TypeGraphQL.InputType("MoviesCreateInput", {})
@@ -57,13 +57,16 @@ export class MoviesCreateInput {
   })
   backdrop_path?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieGenresCreateNestedManyWithoutMoviesInput, {
-    nullable: true,
-  })
-  MovieGenres?: MovieGenresCreateNestedManyWithoutMoviesInput | undefined;
+  @TypeGraphQL.Field(
+    (_type) => Movie_genresCreateNestedManyWithoutMoviesInput,
+    {
+      nullable: true,
+    },
+  )
+  movie_genres?: Movie_genresCreateNestedManyWithoutMoviesInput | undefined;
 
   @TypeGraphQL.Field((_type) => RatingsCreateNestedManyWithoutMoviesInput, {
     nullable: true,
   })
-  Ratings?: RatingsCreateNestedManyWithoutMoviesInput | undefined;
+  ratings?: RatingsCreateNestedManyWithoutMoviesInput | undefined;
 }

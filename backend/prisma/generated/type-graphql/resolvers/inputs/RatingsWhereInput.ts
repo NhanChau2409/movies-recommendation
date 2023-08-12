@@ -42,10 +42,10 @@ export class RatingsWhereInput {
   @TypeGraphQL.Field((_type) => MoviesRelationFilter, {
     nullable: true,
   })
-  Movies?: MoviesRelationFilter | undefined;
+  movies?: MoviesRelationFilter | undefined;
 
   @TypeGraphQL.Field((_type) => UsersRelationFilter, {
     nullable: true,
   })
-  Users?: UsersRelationFilter | undefined;
+  users?: UsersRelationFilter | undefined;
 }

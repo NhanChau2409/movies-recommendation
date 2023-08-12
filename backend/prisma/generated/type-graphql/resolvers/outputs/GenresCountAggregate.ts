@@ -13,7 +13,7 @@ export class GenresCountAggregate {
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: false,
   })
-  name!: number;
+  genre!: number;
 
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: false,

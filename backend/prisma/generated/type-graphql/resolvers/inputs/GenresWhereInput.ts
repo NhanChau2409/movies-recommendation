@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
-import { MovieGenresListRelationFilter } from "../inputs/MovieGenresListRelationFilter";
+import { Movie_genresListRelationFilter } from "../inputs/Movie_genresListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("GenresWhereInput", {})
@@ -31,10 +31,10 @@ export class GenresWhereInput {
   @TypeGraphQL.Field((_type) => StringFilter, {
     nullable: true,
   })
-  name?: StringFilter | undefined;
+  genre?: StringFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieGenresListRelationFilter, {
+  @TypeGraphQL.Field((_type) => Movie_genresListRelationFilter, {
     nullable: true,
   })
-  MovieGenres?: MovieGenresListRelationFilter | undefined;
+  movie_genres?: Movie_genresListRelationFilter | undefined;
 }

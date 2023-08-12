@@ -1,19 +1,11 @@
-const SECURE_BASE_URL = "https://image.tmdb.org/t/p/"
-const POSTER_SIZES = [
-    "w92",
-    "w154",
-    "w185",
-    "w342",
-    "w500",
-    "w780",
-    "original"
-]
+const POSTER_URL = (url: string) => `https://image.tmdb.org/t/p/original/${url}`
+const POSTER_SIZE_TO_PIXEL = {
+    w92: {width: 92, height: 138},
+    w154: {width: 154, height: 231},
+    w185: {width: 185, height: 278},
+    w342: {width: 342, height: 513},
+    w500: {width: 500, height: 750},
+    w780: {width: 780, height: 1170},
+}
 
-const BACKDROP_SIZES= [
-    "w300",
-    "w780",
-    "w1280",
-    "original"
-]
-
-export {SECURE_BASE_URL, POSTER_SIZES}
+export {POSTER_SIZE_TO_PIXEL, POSTER_URL}

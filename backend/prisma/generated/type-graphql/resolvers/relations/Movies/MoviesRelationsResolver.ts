@@ -1,9 +1,9 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
-import { MovieGenres } from "../../../models/MovieGenres";
+import { Movie_genres } from "../../../models/Movie_genres";
 import { Movies } from "../../../models/Movies";
 import { Ratings } from "../../../models/Ratings";
-import { MoviesMovieGenresArgs } from "./args/MoviesMovieGenresArgs";
+import { MoviesMovie_genresArgs } from "./args/MoviesMovie_genresArgs";
 import { MoviesRatingsArgs } from "./args/MoviesRatingsArgs";
 import {
   transformInfoIntoPrismaArgs,
@@ -13,15 +13,15 @@ import {
 
 @TypeGraphQL.Resolver((_of) => Movies)
 export class MoviesRelationsResolver {
-  @TypeGraphQL.FieldResolver((_type) => [MovieGenres], {
+  @TypeGraphQL.FieldResolver((_type) => [Movie_genres], {
     nullable: false,
   })
-  async MovieGenres(
+  async movie_genres(
     @TypeGraphQL.Root() movies: Movies,
     @TypeGraphQL.Ctx() ctx: any,
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
-    @TypeGraphQL.Args() args: MoviesMovieGenresArgs,
-  ): Promise<MovieGenres[]> {
+    @TypeGraphQL.Args() args: MoviesMovie_genresArgs,
+  ): Promise<Movie_genres[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx)
       .movies.findUniqueOrThrow({
@@ -29,7 +29,7 @@ export class MoviesRelationsResolver {
           id: movies.id,
         },
       })
-      .MovieGenres({
+      .movie_genres({
         ...args,
         ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
       });
@@ -38,7 +38,7 @@ export class MoviesRelationsResolver {
   @TypeGraphQL.FieldResolver((_type) => [Ratings], {
     nullable: false,
   })
-  async Ratings(
+  async ratings(
     @TypeGraphQL.Root() movies: Movies,
     @TypeGraphQL.Ctx() ctx: any,
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
@@ -51,7 +51,7 @@ export class MoviesRelationsResolver {
           id: movies.id,
         },
       })
-      .Ratings({
+      .ratings({
         ...args,
         ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
       });

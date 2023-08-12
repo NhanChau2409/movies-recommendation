@@ -14,5 +14,5 @@ export class GenresMinOrderByAggregateInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
-  name?: "asc" | "desc" | undefined;
+  genre?: "asc" | "desc" | undefined;
 }

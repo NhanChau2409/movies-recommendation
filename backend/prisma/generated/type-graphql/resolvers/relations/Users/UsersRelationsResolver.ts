@@ -14,7 +14,7 @@ export class UsersRelationsResolver {
   @TypeGraphQL.FieldResolver((_type) => [Ratings], {
     nullable: false,
   })
-  async Ratings(
+  async ratings(
     @TypeGraphQL.Root() users: Users,
     @TypeGraphQL.Ctx() ctx: any,
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
@@ -27,7 +27,7 @@ export class UsersRelationsResolver {
           id: users.id,
         },
       })
-      .Ratings({
+      .ratings({
         ...args,
         ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
       });

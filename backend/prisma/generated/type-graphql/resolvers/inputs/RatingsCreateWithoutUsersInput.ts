@@ -14,5 +14,5 @@ export class RatingsCreateWithoutUsersInput {
   @TypeGraphQL.Field((_type) => MoviesCreateNestedOneWithoutRatingsInput, {
     nullable: false,
   })
-  Movies!: MoviesCreateNestedOneWithoutRatingsInput;
+  movies!: MoviesCreateNestedOneWithoutRatingsInput;
 }

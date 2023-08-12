@@ -59,3 +59,5 @@ model users {
   password String    @db.VarChar(50)
   ratings  ratings[]
 }
+
+// There will need to manually fix the ManyRelation things - it need at least one property

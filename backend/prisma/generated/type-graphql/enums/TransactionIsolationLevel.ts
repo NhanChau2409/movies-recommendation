@@ -5,7 +5,6 @@ export enum TransactionIsolationLevel {
   ReadCommitted = "ReadCommitted",
   RepeatableRead = "RepeatableRead",
   Serializable = "Serializable",
-  Snapshot = "Snapshot",
 }
 TypeGraphQL.registerEnumType(TransactionIsolationLevel, {
   name: "TransactionIsolationLevel",

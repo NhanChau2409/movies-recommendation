@@ -8,4 +8,9 @@ export class CreateManyGenresArgs {
     nullable: false,
   })
   data!: GenresCreateManyInput[];
+
+  @TypeGraphQL.Field((_type) => Boolean, {
+    nullable: true,
+  })
+  skipDuplicates?: boolean | undefined;
 }

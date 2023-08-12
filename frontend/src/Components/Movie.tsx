@@ -1,1 +1,67 @@
-import * as React from 'react'import {Card, CardMedia} from '@mui/material'import {useQuery} from "@apollo/client";import {QUERY_MOVIE_POSTER} from "../query";import {SECURE_BASE_URL} from "../constants";const Movie = () => {    const {loading, data, error} = useQuery(QUERY_MOVIE_POSTER, {variables: {take: 1},})    if (loading) return <p>Loading...</p>    if (error) return <p>Error :(</p>    const poster = data?.findManyMovies.at(0)    const originalWidth = 154;    const originalHeight = (originalWidth * 3) / 2    const poster_path = `${SECURE_BASE_URL}/w154/${poster?.poster_path}`    return <div>        <Card sx={{ width: `${originalWidth}px`, height: `${originalHeight}px` }}>            <CardMedia                sx={{ height: `${originalHeight}px` }}                image={poster_path}            />        </Card>    </div>}export default Movie
+import * as React from "react";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { POSTER_URL } from "../constants";
+import { Movies } from "../types/gql/__generated__/graphql";
+import VideocamIcon from "@mui/icons-material/Videocam";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import { CenterBox } from "./utils";
+
+const Movie: React.FC<{ movie: Movies }> = ({ movie }) => {
+  return (
+    <Card
+      sx={(theme) => ({
+        mt: theme.spacing(5), // Important for card to scale up and visible
+        mb: theme.spacing(13),
+        ml: theme.spacing(0.5),
+        mr: theme.spacing(0.5),
+        display: "block",
+        width: theme.poster_size.screen2K.width,
+        // height: theme.poster_size.screen2K.height,
+        height: "100%",
+        transition:
+          "transform 0.5s ease, box-shadow 0.5s ease , height 0.5s ease",
+        "&:hover": {
+          transform: "scale(1.1)", // Scale the card up by 10% on hover
+          boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.7)",
+          // height: "100%",
+        },
+        backgroundColor: theme.palette.background.default,
+      })}
+    >
+      <CardMedia
+        sx={(theme) => ({})}
+        image={POSTER_URL(movie.poster_path as string)}
+        loading="lazy"
+        component={"img"}
+      />
+
+      <CardContent
+        sx={(theme) => ({
+          backgroundColor: theme.palette.background.default,
+        })}
+      >
+        <CenterBox>
+          <CenterBox>
+            <FavoriteIcon fontSize={"small"} />
+            <Typography>{parseFloat(movie.vote_average).toFixed(1)}</Typography>
+          </CenterBox>
+
+          <CenterBox>
+            <AccessTimeFilledIcon fontSize={"small"} />
+            <Typography>{movie.runtime}m</Typography>
+          </CenterBox>
+
+          <CenterBox>
+            <VideocamIcon />
+            <Typography>
+              {new Date(movie.release_date).getFullYear()}
+            </Typography>
+          </CenterBox>
+        </CenterBox>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default Movie;

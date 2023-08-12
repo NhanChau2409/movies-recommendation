@@ -18,5 +18,5 @@ export class RatingsUpdateWithoutUsersInput {
       nullable: true,
     },
   )
-  Movies?: MoviesUpdateOneRequiredWithoutRatingsNestedInput | undefined;
+  movies?: MoviesUpdateOneRequiredWithoutRatingsNestedInput | undefined;
 }

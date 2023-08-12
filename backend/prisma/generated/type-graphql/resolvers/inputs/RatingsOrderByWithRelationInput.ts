@@ -26,10 +26,10 @@ export class RatingsOrderByWithRelationInput {
   @TypeGraphQL.Field((_type) => MoviesOrderByWithRelationInput, {
     nullable: true,
   })
-  Movies?: MoviesOrderByWithRelationInput | undefined;
+  movies?: MoviesOrderByWithRelationInput | undefined;
 
   @TypeGraphQL.Field((_type) => UsersOrderByWithRelationInput, {
     nullable: true,
   })
-  Users?: UsersOrderByWithRelationInput | undefined;
+  users?: UsersOrderByWithRelationInput | undefined;
 }

@@ -25,5 +25,5 @@ export class UsersOrderByWithRelationInput {
   @TypeGraphQL.Field((_type) => RatingsOrderByRelationAggregateInput, {
     nullable: true,
   })
-  Ratings?: RatingsOrderByRelationAggregateInput | undefined;
+  ratings?: RatingsOrderByRelationAggregateInput | undefined;
 }

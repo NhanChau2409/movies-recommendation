@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query FindManyMovies($take: Int) {\n  findManyMovies(take: $take) {\n    id\n    backdrop_path\n    poster_path\n  }\n}": types.FindManyMoviesDocument,
+    "query FindManyMovies($take: Int) {\n  findManyMovies(take: $take) {\n    id\n    poster_path\n    runtime\n    vote_average\n    release_date\n  }\n}": types.FindManyMoviesDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query FindManyMovies($take: Int) {\n  findManyMovies(take: $take) {\n    id\n    backdrop_path\n    poster_path\n  }\n}"): (typeof documents)["query FindManyMovies($take: Int) {\n  findManyMovies(take: $take) {\n    id\n    backdrop_path\n    poster_path\n  }\n}"];
+export function gql(source: "query FindManyMovies($take: Int) {\n  findManyMovies(take: $take) {\n    id\n    poster_path\n    runtime\n    vote_average\n    release_date\n  }\n}"): (typeof documents)["query FindManyMovies($take: Int) {\n  findManyMovies(take: $take) {\n    id\n    poster_path\n    runtime\n    vote_average\n    release_date\n  }\n}"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

@@ -6,16 +6,16 @@ import { UsersCountRatingsArgs } from "./args/UsersCountRatingsArgs";
 
 @TypeGraphQL.ObjectType("UsersCount", {})
 export class UsersCount {
-  Ratings!: number;
+  ratings!: number;
 
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    name: "Ratings",
+    name: "ratings",
     nullable: false,
   })
   getRatings(
     @TypeGraphQL.Root() root: UsersCount,
     @TypeGraphQL.Args() args: UsersCountRatingsArgs,
   ): number {
-    return root.Ratings;
+    return root.ratings;
   }
 }

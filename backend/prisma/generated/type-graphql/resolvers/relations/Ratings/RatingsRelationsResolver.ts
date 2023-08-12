@@ -14,7 +14,7 @@ export class RatingsRelationsResolver {
   @TypeGraphQL.FieldResolver((_type) => Movies, {
     nullable: false,
   })
-  async Movies(
+  async movies(
     @TypeGraphQL.Root() ratings: Ratings,
     @TypeGraphQL.Ctx() ctx: any,
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
@@ -29,7 +29,7 @@ export class RatingsRelationsResolver {
           },
         },
       })
-      .Movies({
+      .movies({
         ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
       });
   }
@@ -37,7 +37,7 @@ export class RatingsRelationsResolver {
   @TypeGraphQL.FieldResolver((_type) => Users, {
     nullable: false,
   })
-  async Users(
+  async users(
     @TypeGraphQL.Root() ratings: Ratings,
     @TypeGraphQL.Ctx() ctx: any,
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
@@ -52,7 +52,7 @@ export class RatingsRelationsResolver {
           },
         },
       })
-      .Users({
+      .users({
         ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
       });
   }
