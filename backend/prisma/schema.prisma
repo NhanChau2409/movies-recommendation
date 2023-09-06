@@ -60,4 +60,4 @@ model users {
   ratings  ratings[]
 }
 
-// There will need to manually fix the ManyRelation things - it need at least one property
+// There will need to manually fix the empty ManyToManyRelation

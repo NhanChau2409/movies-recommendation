@@ -1,18 +1,28 @@
-import { Box, styled, Typography } from "@mui/material";
+import { Box, Stack, styled, Typography } from "@mui/material";
 
 export const CenterBox = styled(Box)(({ theme }) => ({
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "space-evenly",
   alignItems: "center",
 }));
 
-export const LeftBox = styled(CenterBox)(({ theme }) => ({
-  ml: theme.spacing(2),
-  mr: theme.spacing(2),
+export const LeftBox = styled(Box)(({ theme }) => ({
+  padding: 4,
+  display: "flex",
+  justifyContent: "space-evenly",
   alignItems: "flex-start",
 }));
 
-export const Header = styled(Typography)(({ theme }) => ({
-  ml: theme.spacing(2),
-  mr: theme.spacing(2),
+export const RowContainer = styled(Stack)(({ theme }) => ({
+  flexDirection: "row",
+  justifyContent: "space-evenly",
+  alignItems: "center",
+  spacing: 8,
+}));
+
+export const ColumnContainer = styled(Stack)(({ theme }) => ({
+  flexDirection: "column",
+  justifyContent: "space-evenly",
+  alignItems: "center",
+  spacing: 8,
 }));

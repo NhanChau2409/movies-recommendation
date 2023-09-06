@@ -45,7 +45,7 @@ const customizeTheme = createTheme({
   },
 
   typography: {
-    fontSize: 9,
+    fontSize: 11,
     allVariants: {
       color: "#F5F5F1",
     },

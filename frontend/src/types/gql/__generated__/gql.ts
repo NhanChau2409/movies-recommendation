@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "query FindManyMovies($take: Int) {\n  findManyMovies(take: $take) {\n    id\n    poster_path\n    runtime\n    vote_average\n    release_date\n  }\n}": types.FindManyMoviesDocument,
+    "query FindUniqueMovies($where: MoviesWhereUniqueInput!) {\n  findUniqueMovies(where: $where) {\n    id\n    movie_genres {\n      genres {\n        genre\n      }\n    }\n    overview\n    popularity\n    poster_path\n    release_date\n    runtime\n    title\n    vote_average\n    vote_count\n  }\n}": types.FindUniqueMoviesDocument,
 };
 
 /**
@@ -34,6 +35,10 @@ export function gql(source: string): unknown;
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "query FindManyMovies($take: Int) {\n  findManyMovies(take: $take) {\n    id\n    poster_path\n    runtime\n    vote_average\n    release_date\n  }\n}"): (typeof documents)["query FindManyMovies($take: Int) {\n  findManyMovies(take: $take) {\n    id\n    poster_path\n    runtime\n    vote_average\n    release_date\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "query FindUniqueMovies($where: MoviesWhereUniqueInput!) {\n  findUniqueMovies(where: $where) {\n    id\n    movie_genres {\n      genres {\n        genre\n      }\n    }\n    overview\n    popularity\n    poster_path\n    release_date\n    runtime\n    title\n    vote_average\n    vote_count\n  }\n}"): (typeof documents)["query FindUniqueMovies($where: MoviesWhereUniqueInput!) {\n  findUniqueMovies(where: $where) {\n    id\n    movie_genres {\n      genres {\n        genre\n      }\n    }\n    overview\n    popularity\n    poster_path\n    release_date\n    runtime\n    title\n    vote_average\n    vote_count\n  }\n}"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

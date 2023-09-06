@@ -1,12 +1,12 @@
 import { Typography } from "@mui/material";
-import React from "react";
+import React, { Children } from "react";
 import { useNavigate } from "react-router-dom";
-import { CenterBox } from "./utils";
+import { CenterBox, LeftBox } from "./utils";
 
-const NavigationTab = () => {
+const NavigationTab = ({ children }: React.PropsWithChildren) => {
   const navigate = useNavigate();
   return (
-    <CenterBox sx={{ backgroundColor: "light" }}>
+    <LeftBox sx={{ backgroundColor: "light" }}>
       <CenterBox
         onClick={() => navigate("/")}
         sx={{ backgroundColor: "light" }}
@@ -31,7 +31,9 @@ const NavigationTab = () => {
           MyList
         </Typography>
       </CenterBox>
-    </CenterBox>
+
+      {}
+    </LeftBox>
   );
 };
 

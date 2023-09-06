@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Slider from "react-slick";
+import Slider, { CustomArrowProps } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useQuery } from "@apollo/client";
 import { QUERY_MOVIE_POSTER } from "../query";
-import Movie from "./Movie";
+import Movie from "./Movie/Movie";
 import { Movies } from "../types/gql/__generated__/graphql";
 import {
   Box,
@@ -13,8 +13,48 @@ import {
   DialogTitle,
   Typography,
 } from "@mui/material";
-import Arrow from "./Arrow";
-import { CenterBox, LeftBox } from "./utils";
+import { CenterBox } from "./utils";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+interface SelfCustomArrowProps extends CustomArrowProps {
+  isLeft?: boolean;
+}
+
+const Arrow: React.FC<SelfCustomArrowProps> = ({ onClick, isLeft }) => {
+  return (
+    <Box
+      sx={(theme) => ({
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        opacity: 0,
+        transition: "backgroundColor 0.3s ease, opacity 0.3s ease",
+        "&:hover": {
+          opacity: 1,
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+        },
+        zIndex: 100,
+        width: "77px", // Need customize
+        height: theme.poster_size.screen4K.height,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "absolute",
+        top: 0,
+        left: isLeft ? 0 : "unset",
+        right: isLeft ? "unset" : 0,
+        mt: theme.spacing(5),
+        mb: theme.spacing(13),
+      })}
+      onClick={onClick}
+    >
+      {isLeft ? (
+        <ArrowBackIosIcon fontSize={"large"} />
+      ) : (
+        <ArrowForwardIosIcon fontSize={"large"} />
+      )}
+    </Box>
+  );
+};
 
 const MovieCarousel = () => {
   const [open, setOpen] = useState(false);
