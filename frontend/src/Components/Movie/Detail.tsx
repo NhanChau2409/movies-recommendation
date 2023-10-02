@@ -1,8 +1,9 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { DialogContent, Typography } from "@mui/material";
+import { Card, CardMedia, DialogContent, Typography } from "@mui/material";
 import { ColumnContainer, RowContainer } from "../utils";
 import { QUERY_MOVIE_DETAIL } from "../../query";
+import { POSTER_URL } from "../../constants";
 
 const Detail = ({ id }: { id: number }) => {
   const { loading, error, data } = useQuery(QUERY_MOVIE_DETAIL, {
@@ -28,23 +29,31 @@ const Detail = ({ id }: { id: number }) => {
     release_date,
     runtime,
     overview,
+    poster_path,
   } = data?.findUniqueMovies || {};
 
   return (
-    <DialogContent>
-      <ColumnContainer>
-        <Typography>{title}</Typography>
-        <RowContainer>
-          <Typography>{vote_count}</Typography>
-          <Typography>{vote_average}</Typography>
-          <Typography>{popularity}</Typography>
-        </RowContainer>
-        <RowContainer>
-          <Typography>{release_date}</Typography>
-          <Typography>{runtime}</Typography>
-        </RowContainer>
-        <Typography>{overview}</Typography>
-      </ColumnContainer>
+    <DialogContent sx={{ height: "50%" }}>
+      <RowContainer>
+        <Card>
+          <CardMedia
+            sx={(theme) => ({
+              width: theme.poster_size.screen2K.width,
+            })}
+            image={POSTER_URL(poster_path as string)}
+            loading="lazy"
+            component={"img"}
+          />
+        </Card>
+        <ColumnContainer
+          sx={(theme) => ({
+            width: theme.poster_size.screen2K.width * 1.5,
+          })}
+        >
+          <Typography>{title}</Typography>
+          <Typography>{overview}</Typography>
+        </ColumnContainer>
+      </RowContainer>
     </DialogContent>
   );
 };

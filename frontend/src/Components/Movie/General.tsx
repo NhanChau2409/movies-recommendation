@@ -15,7 +15,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { CenterBox } from "../utils";
 import Detail from "./Detail";
 
-const Movie: React.FC<{ movie: Movies }> = ({ movie }) => {
+const General: React.FC<{ movie: Movies }> = ({ movie }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -84,4 +84,4 @@ const Movie: React.FC<{ movie: Movies }> = ({ movie }) => {
   );
 };
 
-export default Movie;
+export default General;

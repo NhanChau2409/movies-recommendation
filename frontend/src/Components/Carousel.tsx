@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useQuery } from "@apollo/client";
 import { QUERY_MOVIE_POSTER } from "../query";
-import Movie from "./Movie/Movie";
+import General from "./Movie/General";
 import { Movies } from "../types/gql/graphql";
 import {
   Box,
@@ -81,7 +81,7 @@ const Carousel = ({ genre }: { genre: string }) => {
   if (error || !data) return <p>Error :(</p>;
 
   const moviesArray = data.findManyMovies.map((movie) => (
-    <Movie movie={movie as Movies} />
+    <General movie={movie as Movies} />
   ));
 
   return (
