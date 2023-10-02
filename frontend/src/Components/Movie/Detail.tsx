@@ -1,16 +1,18 @@
 import React from "react";
-import { ApolloError } from "@apollo/client";
-import { FindUniqueMoviesQuery } from "../../types/gql/__generated__/graphql";
+import { useQuery } from "@apollo/client";
 import { DialogContent, Typography } from "@mui/material";
 import { ColumnContainer, RowContainer } from "../utils";
+import { QUERY_MOVIE_DETAIL } from "../../query";
 
-interface DetailProps extends React.PropsWithChildren {
-  loading: boolean;
-  error: ApolloError | undefined;
-  data: FindUniqueMoviesQuery | undefined;
-}
+const Detail = ({ id }: { id: number }) => {
+  const { loading, error, data } = useQuery(QUERY_MOVIE_DETAIL, {
+    variables: {
+      where: {
+        id: id,
+      },
+    },
+  });
 
-const Detail: React.FC<DetailProps> = ({ loading, error, data }) => {
   if (loading) {
     return <p>loading ...</p>;
   }

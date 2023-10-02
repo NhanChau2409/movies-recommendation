@@ -6,22 +6,17 @@ import {
   CardContent,
   CardMedia,
   Dialog,
-  DialogContent,
   Typography,
 } from "@mui/material";
 import { POSTER_URL } from "../../constants";
-import { Movies } from "../../types/gql/__generated__/graphql";
+import { Movies } from "../../types/gql/graphql";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { CenterBox } from "../utils";
-import { useLazyQuery } from "@apollo/client";
-import { QUERY_MOVIE_DETAIL } from "../../query";
 import Detail from "./Detail";
 
 const Movie: React.FC<{ movie: Movies }> = ({ movie }) => {
   const [open, setOpen] = useState(false);
-  const [getDetail, { loading, error, data }] =
-    useLazyQuery(QUERY_MOVIE_DETAIL);
 
   return (
     <Box>
@@ -45,18 +40,10 @@ const Movie: React.FC<{ movie: Movies }> = ({ movie }) => {
           backgroundColor: theme.palette.background.default,
         })}
         onClick={() => {
-          getDetail({
-            variables: {
-              where: {
-                id: movie.id,
-              },
-            },
-          });
           setOpen(true);
         }}
       >
         <CardMedia
-          sx={(theme) => ({})}
           image={POSTER_URL(movie.poster_path as string)}
           loading="lazy"
           component={"img"}
@@ -91,7 +78,7 @@ const Movie: React.FC<{ movie: Movies }> = ({ movie }) => {
         }}
         maxWidth={false}
       >
-        <Detail loading={loading} error={error} data={data} />
+        <Detail id={movie.id} />
       </Dialog>
     </Box>
   );

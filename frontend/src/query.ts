@@ -1,7 +1,8 @@
-import { gql } from "./types/gql/__generated__";
+import { gql } from "./types/gql/";
 
-const QUERY_MOVIE_POSTER = gql(`query FindManyMovies($take: Int) {
-  findManyMovies(take: $take) {
+const QUERY_MOVIE_POSTER =
+  gql(`query FindManyMovies($where: MoviesWhereInput, $take: Int) {
+  findManyMovies(where: $where, take: $take) {
     id
     poster_path
     runtime

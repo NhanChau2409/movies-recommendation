@@ -1,7 +1,5 @@
-import MovieCarousel from "./MovieCarousel";
-
 const Home = () => {
-  return <MovieCarousel />;
+  return <></>;
 };
 
 export default Home;
