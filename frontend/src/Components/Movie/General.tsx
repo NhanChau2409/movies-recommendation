@@ -28,7 +28,6 @@ const General: React.FC<{ movie: Movies }> = ({ movie }) => {
           mr: theme.spacing(0.5),
           display: "block",
           width: theme.poster_size.screen2K.width,
-          // height: theme.poster_size.screen2K.height,
           height: "100%",
           transition:
             "transform 0.5s ease, box-shadow 0.5s ease , height 0.5s ease",

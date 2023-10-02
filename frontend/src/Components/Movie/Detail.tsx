@@ -1,6 +1,13 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { Card, CardMedia, DialogContent, Typography } from "@mui/material";
+import {
+  Alert,
+  Card,
+  CardMedia,
+  CircularProgress,
+  DialogContent,
+  Typography,
+} from "@mui/material";
 import { ColumnContainer, RowContainer } from "../utils";
 import { QUERY_MOVIE_DETAIL } from "../../query";
 import { POSTER_URL } from "../../constants";
@@ -14,12 +21,8 @@ const Detail = ({ id }: { id: number }) => {
     },
   });
 
-  if (loading) {
-    return <p>loading ...</p>;
-  }
-  if (error) {
-    return <p>error</p>;
-  }
+  if (loading) return <CircularProgress color="inherit" />;
+  if (error || !data) return <Alert severity="error">Database Error</Alert>;
 
   const {
     title,

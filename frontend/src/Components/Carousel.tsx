@@ -7,7 +7,9 @@ import { QUERY_MOVIE_POSTER } from "../query";
 import General from "./Movie/General";
 import { Movies } from "../types/gql/graphql";
 import {
+  Alert,
   Box,
+  CircularProgress,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -77,8 +79,8 @@ const Carousel = ({ genre }: { genre: string }) => {
       take: 20,
     },
   });
-  if (loading) return <p>Loading...</p>;
-  if (error || !data) return <p>Error :(</p>;
+  if (loading) return <CircularProgress color="inherit" />;
+  if (error || !data) return <Alert severity="error">Database Error</Alert>;
 
   const moviesArray = data.findManyMovies.map((movie) => (
     <General movie={movie as Movies} />
